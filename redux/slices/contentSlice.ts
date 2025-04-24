@@ -4,21 +4,21 @@ import { fetchContentList } from '@lib/contentService';
 import { Content } from '@interfaces/content/content';
 
 export const fetchContentListAsync = createAsyncThunk('content/list',
-  async () => {
-    const response = await fetchContentList("");
+  async (search: string) => {
+    const response = await fetchContentList(search);
     return response;
   }
 );
 
 interface ContentState {
-  contents: Content[];
+  contents: Content | null;
   search: string;
   isLoading: boolean;
   error: string | null;
 }
 
 const initialState: ContentState = {
-  contents: [],
+  contents: null,
   search: "",
   isLoading: false,
   error: null,
@@ -28,7 +28,7 @@ const contentSlice = createSlice({
   name: 'contents',
   initialState,
   reducers: {
-    setContents(state, action: PayloadAction<Content[]>) {
+    setContents(state, action: PayloadAction<Content>) {
       state.contents = action.payload;
     },
     setSearch(state, action: PayloadAction<string>) {
