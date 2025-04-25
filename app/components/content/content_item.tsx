@@ -9,17 +9,23 @@ import {
   IdCard,
   Building,
   PersonStanding,
+  BaggageClaim,
+  Linkedin,
+  Flag,
+  Car,
 } from 'lucide-react';
 
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@redux/store";
+import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "@redux/store";
+
+import { LoadingSpinner } from "@components/loading/Spinner";
+
 // import {
 //   setIsLoading,
 //   setError,
 //   fetchContentListAsync,
 // } from "@redux/slices/contentSlice";
-import { LoadingSpinner } from "@components/loading/Spinner";
 
 // const useDebouncedValue = (value: string, delay: number) => {
 //   const [debounced, setDebounced] = useState(value);
@@ -167,9 +173,147 @@ const ContentItems: React.FC = () => {
           </div>
         )}
 
+        {/* Bukalapak Section */}
+        {contents?.data.List?.BukalaPak?.Data?.length != null && (
+          <div>
+            <h2 className="text-xl font-semibold text-black mb-4">Bukalapak</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {contents.data.List.BukalaPak.Data.map((item, index) => (
+                <div
+                  key={`bukalapak-${index}`}
+                  className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all"
+                >
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <User className="w-4 h-4 flex-shrink-0" />
+                    <span>{item.FullName ?? "N/A"}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <Mail className="w-4 h-4 flex-shrink-0" />
+                    <span>{item.Email ?? "N/A"}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Apollo Section */}
+        {contents?.data.List?.Apollo?.Data?.length != null && (
+          <div>
+            <h2 className="text-xl font-semibold text-black mb-4">Apollo</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {contents.data.List.Apollo.Data.map((item, index) => (
+                <div
+                  key={`apollo-${index}`}
+                  className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all"
+                >
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <User className="w-4 h-4 flex-shrink-0" />
+                    <span>{item.FullName ?? "N/A"}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <Mail className="w-4 h-4 flex-shrink-0" />
+                    <span>{item.Email ?? "N/A"}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <BaggageClaim className="w-4 h-4 flex-shrink-0" />
+                    <span>{item.Work ?? "N/A"}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <Flag className="w-4 h-4 flex-shrink-0" />
+                    <span>{item.Country ?? "N/A"}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <Linkedin className="w-4 h-4 flex-shrink-0" />
+                    <span>{item.LinkedinURL ?? "N/A"}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* People Data Labs Section */}
+        {contents?.data.List?.PeopleDataLabs?.Data?.length != null && (
+          <div>
+            <h2 className="text-xl font-semibold text-black mb-4">People Data Labs</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {contents.data.List.PeopleDataLabs.Data.map((item, index) => (
+                <div
+                  key={`people-data-labs-${index}`}
+                  className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all"
+                >
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <User className="w-4 h-4 flex-shrink-0" />
+                    <span>{item.FullName ?? "N/A"}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <Mail className="w-4 h-4 flex-shrink-0" />
+                    <span>{item.Email ?? "N/A"}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <Home className="w-4 h-4 flex-shrink-0" />
+                    <span>{item.Address ?? "N/A"}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {contents?.data.List?.IndonesiaCarOwner?.Data?.length != null && (
+          <div>
+            <h2 className="text-xl font-semibold text-black mb-4">Indonesian Car Owner</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {contents.data.List.IndonesiaCarOwner.Data.map((item, index) => (
+                <div
+                  key={`indonesia-car-owner-${index}`}
+                  className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all"
+                >
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <User className="w-4 h-4 flex-shrink-0" />
+                    <span>{item.FullName ?? "N/A"}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <Home className="w-4 h-4 flex-shrink-0" />
+                    <span>{item.Address ?? "N/A"}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <IdCard className="w-4 h-4 flex-shrink-0" />
+                    <span>{item.NIK ?? "N/A"}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <Car className="w-4 h-4 flex-shrink-0" />
+                    <span>{item.BPKB ?? "N/A"}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <Car className="w-4 h-4 flex-shrink-0" />
+                    <span>{item.EngineNumber ?? "N/A"}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <Car className="w-4 h-4 flex-shrink-0" />
+                    <span>{item.Type ?? "N/A"}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <Car className="w-4 h-4 flex-shrink-0" />
+                    <span>{item.VehicleYear ?? "N/A"}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Indonesian Car Owner */}
+
+
         {/* Handle if both are empty */}
         {(!contents?.data.List?.Tokopedia?.Data?.length &&
           !contents?.data.List?.RedDoorz?.Data?.length && 
+          !contents?.data.List?.BukalaPak?.Data?.length &&
+          !contents?.data.List?.Apollo?.Data?.length && 
+          !contents?.data.List?.PeopleDataLabs?.Data?.length && 
+          !contents?.data.List?.IndonesiaCarOwner?.Data?.length && 
           !contents?.data.List?.Dukcapil?.Data?.length
         ) && (
           <div className="text-center h-screen justify-center items-center flex text-gray-500 text-lg">
