@@ -42,9 +42,18 @@ const contentSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchContentListAsync.fulfilled, (state, action) => {
-      state.contents = action.payload;
-    });
+    builder
+      .addCase(fetchContentListAsync.pending, (state) => {
+        state.isLoading = true; 
+      })
+      .addCase(fetchContentListAsync.fulfilled, (state, action) => {
+        state.contents = action.payload;
+        state.isLoading = false; 
+      })
+      .addCase(fetchContentListAsync.rejected, (state, action) => {
+        state.isLoading = false;  
+        state.error = action.error.message || "Failed to fetch content";
+      });
   },
 });
 

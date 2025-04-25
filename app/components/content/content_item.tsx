@@ -14,54 +14,54 @@ import {
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@redux/store";
-import {
-  setIsLoading,
-  setError,
-  fetchContentListAsync,
-} from "@redux/slices/contentSlice";
+// import {
+//   setIsLoading,
+//   setError,
+//   fetchContentListAsync,
+// } from "@redux/slices/contentSlice";
 import { LoadingSpinner } from "@components/loading/Spinner";
 
-const useDebouncedValue = (value: string, delay: number) => {
-  const [debounced, setDebounced] = useState(value);
+// const useDebouncedValue = (value: string, delay: number) => {
+//   const [debounced, setDebounced] = useState(value);
 
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebounced(value);
-    }, delay);
+//   useEffect(() => {
+//     const handler = setTimeout(() => {
+//       setDebounced(value);
+//     }, delay);
 
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [value, delay]);
+//     return () => {
+//       clearTimeout(handler);
+//     };
+//   }, [value, delay]);
 
-  return debounced;
-};
+//   return debounced;
+// };
 
 const ContentItems: React.FC = () => {
-  const dispatch = useDispatch<AppDispatch>();
+  // const dispatch = useDispatch<AppDispatch>();
 
-  const search = useSelector((state: RootState) => state.content.search);
   const contents = useSelector((state: RootState) => state.content.contents);
   const isLoading = useSelector((state: RootState) => state.content.isLoading);
+  
+  // KEY UP ON SEARCH
+  // const debouncedSearch = useDebouncedValue(search, 500);
 
-  const debouncedSearch = useDebouncedValue(search, 500);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      if (!debouncedSearch.trim()) return;
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     if (!debouncedSearch.trim()) return;
       
-      dispatch(setIsLoading(true));
-      try {
-        await dispatch(fetchContentListAsync(debouncedSearch));
-      } catch (error) {
-        dispatch(setError((error as Error).message));
-      } finally {
-        dispatch(setIsLoading(false));
-      }
-    };
+  //     dispatch(setIsLoading(true));
+  //     try {
+  //       await dispatch(fetchContentListAsync(debouncedSearch));
+  //     } catch (error) {
+  //       dispatch(setError((error as Error).message));
+  //     } finally {
+  //       dispatch(setIsLoading(false));
+  //     }
+  //   };
 
-    fetchData();
-  }, [debouncedSearch, dispatch]);
+  //   fetchData();
+  // }, [debouncedSearch, dispatch]);
 
   if (isLoading) {
     return (
