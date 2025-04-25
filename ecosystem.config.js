@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: "nextjs-report-internal",
+      name: "nextjs-secret-app",
       script: "npm",
       args: "run start",
       env: {
