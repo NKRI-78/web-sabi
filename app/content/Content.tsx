@@ -1,7 +1,7 @@
 import React from "react";
 
 import type { Metadata } from "next";
-import ContentItems from "@components/content/content_item";
+import ContentItems from "@/app/components/content/ContentItem";
 
 export const metadata: Metadata = {
   title: "Admin | All Transaction",

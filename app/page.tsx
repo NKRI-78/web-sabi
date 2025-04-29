@@ -1,4 +1,4 @@
-import ContentPage from "@/app/content/page";
+import ContentPage from "@/app/content/Content";
 
 const Home: React.FC = () => {
     return (
