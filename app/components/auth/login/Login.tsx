@@ -2,19 +2,19 @@
 
 import { useRouter } from "next/navigation";
 
+import Cookies from "js-cookie";
+
 import { AppDispatch, RootState } from "@redux/store";
 import { useDispatch, useSelector } from "react-redux";
 
-import Cookies from "js-cookie";
-
-import { setLoading, setEmail, setPassword, setShowPassword } from "@redux/slices/authSlice";
+import { loginAdminAsync, setEmail, setPassword, setShowPassword } from "@redux/slices/authSlice";
 
 import { FaEye, FaEyeSlash } from "react-icons/fa"; 
 
 const Login: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const value = useSelector((state: RootState) => state.auth.value);
+  const val = useSelector((state: RootState) => state.auth.value);
   const password = useSelector((state: RootState) => state.auth.password);
   const loading = useSelector((state: RootState) => state.auth.loading);
   const showPassword = useSelector((state: RootState) => state.auth.showPassword);
@@ -24,40 +24,29 @@ const Login: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    dispatch(setLoading(true));
+    const result = await dispatch(
+      loginAdminAsync({ val, password })
+    ).unwrap();
 
-    if(value == "adminrahasia2025" && password == "rahasia2025") {
+    Cookies.set("token", result.data.token, {
+      expires: 365,
+      secure: true,
+      sameSite: "strict",
+    });
 
-      Cookies.set("token", "no-access-to-site", {
-        expires: 365,
-        secure: true,
-        sameSite: "strict",
-      });
-  
-      Cookies.set("user_id", "1", {
-        expires: 365,
-        secure: true,
-        sameSite: "strict",
-      });
-  
-      Cookies.set("username", "Admin", {
-        expires: 365,
-        secure: true,
-        sameSite: "strict",
-      });
-  
-      Cookies.set("access", "no-access-to-site", {
-        expires: 365,
-        secure: true,
-        sameSite: "strict",
-      });
-        
-      router.push("/");
-    }
-    
-    setTimeout(() => {
-      dispatch(setLoading(false));
-    }, 1000);
+    Cookies.set("user_id", result.data.id, {
+      expires: 365,
+      secure: true,
+      sameSite: "strict",
+    });
+
+    Cookies.set("username", result.data.username, {
+      expires: 365,
+      secure: true,
+      sameSite: "strict",
+    });
+
+    router.push("/");
   };
 
   return (
@@ -73,7 +62,7 @@ const Login: React.FC = () => {
             <input
               type="text"
               id="value"
-              value={value}
+              value={val}
               onChange={(e) => dispatch(setEmail(e.target.value))}
               className="w-full px-4 text-black py-2 mt-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-100 focus:border-indigo-300"
               required

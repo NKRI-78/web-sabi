@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 
 export const LoginAdmin = async (val: string, password: string) => {
   try {
-    const response = await axios.post(`https://https://api-sabi.langitdigital78.com/api/v1/auth`,
+    const response = await axios.post(`https://api-sabi.langitdigital78.com/api/v1/auth`,
       {
         "email": val,
         "password": password
