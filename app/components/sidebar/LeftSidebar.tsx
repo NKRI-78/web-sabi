@@ -2,12 +2,20 @@
 
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+
+import { useDispatch } from "react-redux";
+
+import { AppDispatch } from "@redux/store";
+
 import { getUserName } from "@lib/utils";
 import { usePathname } from "next/navigation";
+import { setShowLogoutModal } from "@redux/slices/modalSlice";
 
 const LeftSidebar: React.FC = () => {
+  
+  const dispatch = useDispatch<AppDispatch>();
 
-  const [isClient, setIsClient] = useState(false)
+  const [isClient, setIsClient] = useState(false);
  
   useEffect(() => {
     setIsClient(true)
@@ -32,35 +40,30 @@ const LeftSidebar: React.FC = () => {
         <li className="mb-4">
           <div>
             <Link
-              href="/all-transaction"
+              href="/"
               className={`hover:text-gray-400 ${pathname === "/all-transaction" ? "underline" : ""
                 }`}
             >
-            All Transaction
+            Home
             </Link>
           </div>
         </li>
         <li className="mb-4">
-          <Link
-              href="/topup-transaction"
-              className={`hover:text-gray-400 ${pathname === "/topup-transaction" ? "underline" : ""
-            }`}
-          >
-          Topup Transaction
-          </Link>
-        </li>
-        <li className="mb-4">
-          <Link
-              href="/ppob-transaction"
-              className={`hover:text-gray-400 ${pathname === "/ppob-transaction" ? "underline" : ""
-            }`}
-          >
-          PPOB Transaction
-          </Link>
+          <div>
+            <Link
+              href="/auth/change-password"
+              className={`hover:text-gray-400 ${pathname === "/all-transaction" ? "underline" : ""
+                }`}
+            >
+            Change Password
+            </Link>
+          </div>
         </li>
         <li className="mb-4">
           <button
-            onClick={() => {}}
+            onClick={() => {
+              dispatch(setShowLogoutModal(true));
+            }}
             className="hover:text-gray-400"
           >
             Logout

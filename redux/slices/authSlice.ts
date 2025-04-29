@@ -1,14 +1,22 @@
 import { LoginModel } from '@/app/interfaces/auth/login';
-import { LoginAdmin } from '@lib/authService';
+import { LoginAdmin, UpdatePassword } from '@lib/authService';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export const loginAdminAsync = createAsyncThunk(
-  'login/admin',
+  'auth/login/admin',
   async ({ val, password }: { val: string; password: string }) => {
     const response = await LoginAdmin(val, password);
     return response;
   }
 );
+
+export const updatePasswordAsync = createAsyncThunk(
+  'auth/update-password', 
+  async ({ password } : { password: string}) => {
+    const response = await UpdatePassword(password);
+    return response;
+  }
+)
 
 interface AuthState {
   loading: boolean;
@@ -26,8 +34,8 @@ const initialState: AuthState = {
   loading: false,
   isAuthenticated: false,
   showPassword: false,
-  value: "",
   password: "",
+  value: "",
   token: null,
   error: null,
 };

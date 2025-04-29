@@ -10,6 +10,8 @@ import { usePathname } from "next/navigation";
 import localFont from "next/font/local";
 
 import Header from "@components/header/Header";
+import LeftSidebar from "@components/sidebar/LeftSidebar";
+import ModalLogout from "@components/modal/logout/Logout";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -42,15 +44,20 @@ export default function RootLayout({
                 </div>
               ) 
               : ( 
-                  <div className="flex flex-col flex-grow">
-                    <Header />
+                  <div className="flex">
+                    <LeftSidebar />
 
-                    <div className="flex flex-grow">
-                      {children}
+                    <div className="ml-64 flex flex-col flex-grow">
+                      <Header />
+
+                      <div className="flex flex-grow">
+                        {children}
+                      </div>
                     </div>
                   </div>
                 ) 
               }
+              <ModalLogout />
             </body>
           </html>
       </Provider>
