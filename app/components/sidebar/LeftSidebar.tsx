@@ -51,6 +51,17 @@ const LeftSidebar: React.FC = () => {
         <li className="mb-4">
           <div>
             <Link
+              href="/auth/profile"
+              className={`hover:text-gray-400 ${pathname === "/all-transaction" ? "underline" : ""
+                }`}
+            >
+            Profile
+            </Link>
+          </div>
+        </li>
+        <li className="mb-4">
+          <div>
+            <Link
               href="/auth/change-password"
               className={`hover:text-gray-400 ${pathname === "/all-transaction" ? "underline" : ""
                 }`}

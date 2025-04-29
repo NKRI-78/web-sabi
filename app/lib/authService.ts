@@ -1,5 +1,5 @@
-import axios from 'axios';
-import Swal from 'sweetalert2';
+import axios from "axios";
+import Swal from "sweetalert2";
 import Cookies from "js-cookie";
 
 export const LoginAdmin = async (val: string, password: string) => {
