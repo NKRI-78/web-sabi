@@ -3,24 +3,32 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { AppDispatch } from "@redux/store";
+import { AppDispatch, RootState } from "@redux/store";
 
 import { getUserName } from "@lib/utils";
 import { usePathname } from "next/navigation";
 import { setShowLogoutModal } from "@redux/slices/modalSlice";
+import { GetProfile } from "@app/lib/profileService";
+import { setFullname } from "@redux/slices/profileSlice";
 
 const LeftSidebar: React.FC = () => {
   
   const dispatch = useDispatch<AppDispatch>();
 
-  const [isClient, setIsClient] = useState(false);
- 
+  const fullname = useSelector((state: RootState) => state.profile.fullname);
+
   useEffect(() => {
-    setIsClient(true)
-  }, [])
-  
+    const fetchProfile = async () => {
+      const profile = await GetProfile();
+      if (profile?.data?.profile.fullname) {
+        dispatch(setFullname(profile.data.profile.fullname));
+      }
+    };
+    fetchProfile();
+  }, [dispatch]);
+
   const pathname = usePathname();
 
   return (
@@ -32,7 +40,7 @@ const LeftSidebar: React.FC = () => {
           className="w-10 rounded-full bg-slate-200"
         />
         <h2 className="text-md font-bold">
-          { isClient ? getUserName() : ""} 
+          {fullname}
         </h2>
       </div>
 
