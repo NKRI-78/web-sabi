@@ -16,7 +16,6 @@ export const GetProfile = async () => {
             }
         );
         const data = response.data;
-        console.log(data)
         return data;
     } catch (e: any) {
         Swal.fire({

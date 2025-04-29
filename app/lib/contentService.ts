@@ -13,8 +13,8 @@ export const fetchContentList = async (search: string) => {
     return data;
   } catch (e: any) {
     Swal.fire({
-      icon: "error",
-      title: "Error",
+      icon: "info",
+      title: "Info",
       text: e?.response?.data?.message || e.message,
       timer: 2000,
       showConfirmButton: false,
