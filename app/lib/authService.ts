@@ -1,11 +1,11 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-export const LoginAdmin = async (email: string, password: string) => {
+export const LoginAdmin = async (val: string, password: string) => {
   try {
     const response = await axios.post(`https://https://api-sabi.langitdigital78.com/api/v1/auth`,
       {
-        "email": email,
+        "email": val,
         "password": password
       }
     );
