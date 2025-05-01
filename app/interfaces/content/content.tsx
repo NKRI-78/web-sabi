@@ -19,6 +19,7 @@ export interface List {
     Dukcapil:                Dukcapil;
     IndonesiaCarOwner:       IndonesiaCarOwner;
     "LinkedIn Scraped Data": LinkedInScrapedData;
+    "Instagram Parsing":     InstagramParsing;
     MyPertamina:             MyPertamina;
     PeopleDataLabs:          PeopleDataLabs;
     Pizap:                   Pizap;
@@ -29,6 +30,21 @@ export interface List {
     "Twitter 200M":          Twitter200M;
     "Wahana Express":        WahanaExpress;
     Wattpad:                 Wattpad;
+}
+
+export interface InstagramParsing {
+    Data:         InstagramData[];
+    InfoLeak:     string;
+    NumOfResults: number;
+}
+
+export interface InstagramData {
+    Address:     string;
+    Email:       string;
+    FullName:    string;
+    InstagramID: string;
+    NickName:    string;
+    Phone:       string;
 }
 
 export interface Apollo {

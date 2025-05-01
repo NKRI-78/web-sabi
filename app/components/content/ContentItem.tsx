@@ -102,15 +102,15 @@ const ContentItems: React.FC = () => {
                 >
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <User className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.FullName ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.FullName ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Mail className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Email ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Email ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Phone className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Phone ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Phone ?? "N/A"}</span>
                   </div>
                 </div>
               ))}
@@ -134,15 +134,15 @@ const ContentItems: React.FC = () => {
                 >
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <User className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.FullName ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.FullName ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Mail className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Email ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Email ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Building2 className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Provider ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Provider ?? "N/A"}</span>
                   </div>
                 </div>
               ))}
@@ -166,23 +166,23 @@ const ContentItems: React.FC = () => {
                 >
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <User className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.FullName ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.FullName ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Home className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Address ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Address ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Locate className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Location ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Location ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <IdCard className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Passport ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Passport ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <PersonStanding className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Gender ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Gender ?? "N/A"}</span>
                   </div>
                 </div>
               ))}
@@ -206,11 +206,11 @@ const ContentItems: React.FC = () => {
                 >
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <User className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.FullName ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.FullName ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Mail className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Email ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Email ?? "N/A"}</span>
                   </div>
                 </div>
               ))}
@@ -234,23 +234,23 @@ const ContentItems: React.FC = () => {
                 >
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <User className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.FullName ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.FullName ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Mail className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Email ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Email ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <BaggageClaim className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Work ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Work ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Flag className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Country ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Country ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Linkedin className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.LinkedinURL ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.LinkedinURL ?? "N/A"}</span>
                   </div>
                 </div>
               ))}
@@ -274,15 +274,15 @@ const ContentItems: React.FC = () => {
                 >
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <User className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.FullName ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.FullName ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Mail className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Email ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Email ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Home className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Address ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Address ?? "N/A"}</span>
                   </div>
                 </div>
               ))}
@@ -306,19 +306,19 @@ const ContentItems: React.FC = () => {
                 >
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <User className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.FullName ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.FullName ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Mail className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Email ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Email ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Phone className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Phone ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Phone ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Phone className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Phone ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Phone ?? "N/A"}</span>
                   </div>
                 </div>
               ))}
@@ -342,11 +342,43 @@ const ContentItems: React.FC = () => {
                 >
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <User className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.FullName ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.FullName ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Mail className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Email ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Email ?? "N/A"}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )} 
+
+         {/* Instagram */}
+         {contents?.data.List?.['Instagram Parsing']?.Data?.length != null && (
+          <div>
+            <h2 className="text-xl font-semibold text-black mb-4">Instagram Parsing</h2>
+            <div className={
+                contents.data.List['Instagram Parsing'].Data.length === 1
+                  ? "flex gap-6"
+                  : "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+                }>
+              {contents.data.List['Instagram Parsing'].Data.map((item, index) => (
+                <div
+                  key={`instagram-parsing-${index}`}
+                  className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all"
+                >
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <User className="w-4 h-4 flex-shrink-0" />
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.FullName ?? "N/A"}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <Mail className="w-4 h-4 flex-shrink-0" />
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Email ?? "N/A"}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <Home className="w-4 h-4 flex-shrink-0" />
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Address ?? "N/A"}</span>
                   </div>
                 </div>
               ))}
@@ -370,15 +402,15 @@ const ContentItems: React.FC = () => {
                 >
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <IdCard className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Data ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Data ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <IdCard className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.LeakBase ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.LeakBase ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Mail className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Email ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Email ?? "N/A"}</span>
                   </div>
                 </div>
               ))}
@@ -402,27 +434,27 @@ const ContentItems: React.FC = () => {
                 >
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <User className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.FullName ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.FullName ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Mail className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Email ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Email ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Home className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Country ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Country ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Home className="w-4 h-4 flex-shrink-0" />
-                    <span>{moment(item.BDay).format('YYYY-MM-DD') ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{moment(item.BDay).format('YYYY-MM-DD') ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Home className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Location ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Location ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Facebook className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.FacebookID ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.FacebookID ?? "N/A"}</span>
                   </div>
                 </div>
               ))}
@@ -446,11 +478,11 @@ const ContentItems: React.FC = () => {
                 >
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <User className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.FullName ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.FullName ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Mail className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Email ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Email ?? "N/A"}</span>
                   </div>
                 </div>
               ))}
@@ -474,11 +506,11 @@ const ContentItems: React.FC = () => {
                 >
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <User className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.FullName ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.FullName ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Mail className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Email ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Email ?? "N/A"}</span>
                   </div>
                 </div>
               ))}
@@ -502,15 +534,15 @@ const ContentItems: React.FC = () => {
                 >
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <User className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.FullName ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.FullName ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Mail className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Email ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Email ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Facebook className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.FacebookID ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.FacebookID ?? "N/A"}</span>
                   </div>
                 </div>
               ))}
@@ -534,35 +566,35 @@ const ContentItems: React.FC = () => {
                 >
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <User className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.FullName ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.FullName ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <User className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Phone ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Phone ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <User className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Phone2 ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Phone2 ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Home className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Address ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Address ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Home className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.City ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.City ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Home className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.ShippingAddress ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.ShippingAddress ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Home className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Region ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Region ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Building2 className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.CompanyName ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.CompanyName ?? "N/A"}</span>
                   </div>
                 </div>
               ))}
@@ -586,39 +618,39 @@ const ContentItems: React.FC = () => {
                 >
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <User className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.FullName ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.FullName ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Mail className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Email ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Email ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Mail className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Gender ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Gender ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <LinkedinIcon className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.LinkedinID ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.LinkedinID ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Sword className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Skills ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Skills ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Building2 className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.CompanyName ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.CompanyName ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Building2 className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Industry ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Industry ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Home className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Region ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Region ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Home className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.GeoLocation ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.GeoLocation ?? "N/A"}</span>
                   </div>
                 </div>
               ))}
@@ -642,31 +674,31 @@ const ContentItems: React.FC = () => {
                 >
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <User className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.FullName ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.FullName ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Home className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Address ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Address ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <IdCard className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.NIK ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.NIK ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Car className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.BPKB ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.BPKB ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Car className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.EngineNumber ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.EngineNumber ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Car className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.Type ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.Type ?? "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <Car className="w-4 h-4 flex-shrink-0" />
-                    <span>{item.VehicleYear ?? "N/A"}</span>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">{item.VehicleYear ?? "N/A"}</span>
                   </div>
                 </div>
               ))}
@@ -678,10 +710,16 @@ const ContentItems: React.FC = () => {
         {(!contents?.data.List?.Tokopedia?.Data?.length &&
           !contents?.data.List?.RedDoorz?.Data?.length && 
           !contents?.data.List?.BukalaPak?.Data?.length &&
-          !contents?.data.List?.Apollo?.Data?.length && 
+          !contents?.data.List?.Apollo?.Data?.length &&
+          !contents?.data.List?.Pizap?.Data?.length && 
+          !contents?.data.List?.Wattpad?.Data?.length && 
           !contents?.data.List?.PeopleDataLabs?.Data?.length && 
           !contents?.data.List?.IndonesiaCarOwner?.Data?.length && 
-          !contents?.data.List?.Dukcapil?.Data?.length
+          !contents?.data.List?.Dukcapil?.Data?.length &&
+          !contents?.data.List?.['Tk.indoscreen.com']?.Data?.length && 
+          !contents?.data.List?.['Instagram Parsing']?.Data?.length && 
+          !contents?.data.List?.['Twitter 200M']?.Data?.length && 
+          !contents?.data.List?.['Wahana Express']?.Data?.length 
         ) && (
           <div className="text-center h-screen justify-center items-center flex text-gray-500 text-lg">
             No data available.
