@@ -1,68 +1,80 @@
-"use client";
-
-import React from "react";
-
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { Search } from "lucide-react";
-import { AppDispatch, RootState } from "@redux/store";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchContentListAsync, setSearch, setIsLoading } from "@redux/slices/contentSlice";
+import { Search } from "lucide-react";
+import {
+  setSearch,
+  fetchContentListAsync,
+  fetchContentHistoryAsync,
+} from "@/redux/slices/contentSlice";
+import { RootState } from "@/redux/store";
 
+const SearchBar = () => {
+  const dispatch = useDispatch<any>();
+  const pathname = usePathname();
 
-const Header: React.FC = () => {
+  const search = useSelector((state: RootState) => state.content.search);
+  const contentHistories = useSelector((state: RootState) => state.content.contentHistories);
 
-    const dispatch = useDispatch<AppDispatch>();
+  const [showHistory, setShowHistory] = useState(false);
 
-    const search = useSelector((state: RootState) => state.content.search);
+  useEffect(() => {
+    dispatch(fetchContentHistoryAsync());
+  }, [dispatch]);
 
-    const pathname = usePathname();
+  const onSubmit = () => {
+    if (!search.trim()) return;
+    dispatch(fetchContentListAsync(search));
+    dispatch(fetchContentHistoryAsync()); // refresh history after search
+    setShowHistory(false);
+  };
 
-    const renderTitle = () => {
-        switch (pathname) {
-            case "/":
-                return <h1 className={`text-4xl font-bold text-whited`}>SABI</h1>;
-            case "/auth/change-password":
-                return <h1 className={`text-4xl font-bold text-whited`}>CHANGE PASSWORD</h1>;
-            case "/auth/profile":
-                return <h1 className={`text-4xl font-bold text-whited`}>PROFILE</h1>;
-            default:
-                return <h1 className={`text-4xl font-bold text-whited`}>SABI</h1>;
-        }
-    };
+  return (
+    <header className="flex flex-col h-40 items-center justify-center p-4 relative bg-dark-blue">
+      {pathname !== "/auth/change-password" && pathname !== "/auth/profile" && (
+        <div className="w-full my-4 max-w-xl relative">
+          <input
+            type="text"
+            placeholder="Search..."
+            value={search}
+            onFocus={() => setShowHistory(true)}
+            onBlur={() => setTimeout(() => setShowHistory(false), 200)}
+            onChange={(e) => dispatch(setSearch(e.target.value))}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                onSubmit();
+              }
+            }}
+            className="w-full px-4 py-2 pr-10 text-black rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
+          />
+          <Search
+            onClick={onSubmit}
+            className="absolute cursor-pointer right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+            size={20}
+          />
 
-    const onSubmit = () => {
-        if(search.trim() == "") return;
-        dispatch(fetchContentListAsync(search))
-    }
-
-    return (
-        <div>
-            <header className="flex flex-col h-40 items-center justify-center p-4 relative bg-dark-blue">
-                {renderTitle()}
-                 { pathname == "/auth/change-password" || pathname == "/auth/profile"
-                 ? <div></div> 
-                 : <div className="w-full my-4 max-w-xl relative">
-                    <input
-                        onChange={(e) => dispatch(setSearch(e.target.value))}
-                        onKeyDown={(e) => {
-                            if (e.key === "Enter") {
-                                e.preventDefault();
-                                onSubmit();
-                            }
-                        }}
-                        type="text"
-                        placeholder="Search..."
-                        className="w-full px-4 py-2 pr-10 text-black rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
-                    />
-                    <Search onSubmit={(e) => {
-                        e.preventDefault();
-                        onSubmit();
-                    }} onClick={() => onSubmit()}  className="absolute cursor-pointer right-3 top-1/2 transform -translate-y-1/2 text-gray-500" size={20} /> 
-                    </div>
-                 } 
-            </header>
+          {showHistory && contentHistories.length > 0 && (
+            <ul className="absolute left-0 right-0 top-full mt-1 bg-white text-black rounded-md shadow-md z-10 max-h-40 overflow-y-auto">
+              {contentHistories.map((item, index) => (
+                <li
+                  key={index}
+                  onMouseDown={() => {
+                    dispatch(setSearch(item.query));
+                    dispatch(fetchContentListAsync(item.query));
+                    setShowHistory(false);
+                  }}
+                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                >
+                  {item.query}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
-    );
-}
+      )}
+    </header>
+  );
+};
 
-export default Header;
+export default SearchBar;

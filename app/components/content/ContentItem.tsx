@@ -359,7 +359,7 @@ const ContentItems: React.FC = () => {
           <div>
             <h2 className="text-xl font-semibold text-black mb-4">Tk.Indoscreen.com</h2>
             <div className={
-                contents.data.List['Tk.indoscreen.com'].Data.length === 1
+                contents.data.List.DonJuji.Data.length === 1
                   ? "flex gap-6"
                   : "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
                 }>

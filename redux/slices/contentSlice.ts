@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-import { fetchContentList } from '@lib/contentService';
+import { fetchContentHistories, fetchContentList } from '@lib/contentService';
 import { Content } from '@interfaces/content/content';
+import { ContentHistory, ContentHistoryDataItem } from '@interfaces/content/content-history';
 
 export const fetchContentListAsync = createAsyncThunk('content/list',
   async (search: string) => {
@@ -10,8 +10,16 @@ export const fetchContentListAsync = createAsyncThunk('content/list',
   }
 );
 
+export const fetchContentHistoryAsync = createAsyncThunk('content/histories',
+  async () => {
+    const response = await fetchContentHistories();
+    return response;
+  }
+);
+
 interface ContentState {
   contents: Content | null;
+  contentHistories: ContentHistoryDataItem[];
   search: string;
   isLoading: boolean;
   error: string | null;
@@ -19,6 +27,7 @@ interface ContentState {
 
 const initialState: ContentState = {
   contents: null,
+  contentHistories: [],
   search: "",
   isLoading: false,
   error: null,
@@ -30,6 +39,9 @@ const contentSlice = createSlice({
   reducers: {
     setContents(state, action: PayloadAction<Content>) {
       state.contents = action.payload;
+    },
+    setContentHistories(state, action: PayloadAction<ContentHistoryDataItem[]>) {
+      state.contentHistories = action.payload;
     },
     setSearch(state, action: PayloadAction<string>) {
       state.search = action.payload;
@@ -44,18 +56,21 @@ const contentSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchContentListAsync.pending, (state) => {
-        state.isLoading = true; 
+        state.isLoading = true;
       })
       .addCase(fetchContentListAsync.fulfilled, (state, action) => {
         state.contents = action.payload;
-        state.isLoading = false; 
+        state.isLoading = false;
       })
       .addCase(fetchContentListAsync.rejected, (state, action) => {
-        state.isLoading = false;  
+        state.isLoading = false;
         state.error = action.error.message || "Failed to fetch content";
+      })
+      .addCase(fetchContentHistoryAsync.fulfilled, (state, action) => {
+        state.contentHistories = action.payload;
       });
   },
 });
 
-export const { setContents, setSearch, setIsLoading, setError } = contentSlice.actions;
+export const { setContents, setSearch, setIsLoading, setError, setContentHistories } = contentSlice.actions;
 export default contentSlice.reducer;
