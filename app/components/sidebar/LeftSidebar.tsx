@@ -7,7 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { AppDispatch, RootState } from "@redux/store";
 
-import { getUserName } from "@lib/utils";
+import { ChevronRight, ChevronDown } from "lucide-react";
+
 import { usePathname } from "next/navigation";
 import { setShowLogoutModal } from "@redux/slices/modalSlice";
 import { GetProfile } from "@app/lib/profileService";
@@ -31,6 +32,8 @@ const LeftSidebar: React.FC = () => {
 
   const pathname = usePathname();
 
+  const [showDropdown, setShowDropdown] = useState(false);
+
   return (
     <div className="fixed top-0 left-0 w-64 h-full bg-gray-800 text-white p-4 z-[110]">
       <div className="flex items-center gap-2 mb-4">
@@ -45,6 +48,109 @@ const LeftSidebar: React.FC = () => {
       </div>
 
       <ul>
+      <li className="mb-4">
+        <button
+          onClick={() => setShowDropdown(!showDropdown)}
+          className="hover:text-gray-400 w-full text-left flex items-center justify-between"
+        >
+          <span>Features</span>
+          {showDropdown ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+        </button>
+        {showDropdown && (
+          <ul className="ml-4 mt-2">
+            <li className="mb-2">
+              <Link href="/features/nik" className="hover:text-gray-300">
+                Nik
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link href="/features/register" className="hover:text-gray-300">
+                Register
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link href="/features/cek-kk" className="hover:text-gray-300">
+                Cek KK
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link href="/features/cek-pos" className="hover:text-gray-300">
+                Cek POS
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link href="/features/trace-nik" className="hover:text-gray-300">
+                Trace NIK
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link href="/features/trace-imei" className="hover:text-gray-300">
+                Trace IMEI
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link href="/features/nopol" className="hover:text-gray-300">
+                Nopol
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link href="/features/noka" className="hover:text-gray-300">
+                Noka
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link href="/features/nosin" className="hover:text-gray-300">
+                Nosin
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link href="/features/pln" className="hover:text-gray-300">
+                PLN
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link href="/features/e-wallet" className="hover:text-gray-300">
+                E-Wallet
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link href="/features/cek-rekening" className="hover:text-gray-300">
+                Cek Rekening
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link href="/features/imei-2-phone" className="hover:text-gray-300">
+                IMEI 2 Phone
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link href="/features/phone-2-imei" className="hover:text-gray-300">
+                Phone 2 IMEI 
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link href="/features/gsm-tracker" className="hover:text-gray-300">
+                GSM Tracker 
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link href="/features/bill" className="hover:text-gray-300">
+                Bill 
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link href="/features/phising" className="hover:text-gray-300">
+                Phising 
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link href="/features/cek-imei" className="hover:text-gray-300">
+                Cek IMEI
+              </Link>
+            </li>
+          </ul>
+        )}
+      </li>
         <li className="mb-4">
           <div>
             <Link
