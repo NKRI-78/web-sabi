@@ -25,7 +25,7 @@ const SearchBar = () => {
   const onSubmit = () => {
     if (!search.trim()) return;
     dispatch(fetchContentListAsync(search));
-    dispatch(fetchContentHistoryAsync()); // refresh history after search
+    dispatch(fetchContentHistoryAsync());
     setShowHistory(false);
   };
 

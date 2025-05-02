@@ -54,7 +54,7 @@ const LeftSidebar: React.FC = () => {
             )}
           </button>
           {showDropdown && (
-            <ul className="ml-4 mt-2">
+            <ul className="ml-4 mt-2 max-h-64 overflow-y-auto pr-2">
               {[
                 "nik",
                 "register",
