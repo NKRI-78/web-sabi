@@ -14,7 +14,9 @@ const SearchBar = () => {
   const pathname = usePathname();
 
   const search = useSelector((state: RootState) => state.content.search);
-  const contentHistories = useSelector((state: RootState) => state.content.contentHistories);
+  const contentHistories = useSelector(
+    (state: RootState) => state.content.contentHistories
+  );
 
   const [showHistory, setShowHistory] = useState(false);
 
@@ -53,24 +55,25 @@ const SearchBar = () => {
             className="absolute cursor-pointer right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
             size={20}
           />
-
-          {showHistory && contentHistories.length > 0 && (
-            <ul className="absolute left-0 right-0 top-full mt-1 bg-white text-black rounded-md shadow-md z-10 max-h-40 overflow-y-auto">
-              {contentHistories.map((item, index) => (
-                <li
-                  key={index}
-                  onMouseDown={() => {
-                    dispatch(setSearch(item.query));
-                    dispatch(fetchContentListAsync(item.query));
-                    setShowHistory(false);
-                  }}
-                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                >
-                  {item.query}
-                </li>
-              ))}
-            </ul>
-          )}
+          {showHistory &&
+            Array.isArray(contentHistories) &&
+            contentHistories.length > 0 && (
+              <ul className="absolute left-0 right-0 top-full mt-1 bg-white text-black rounded-md shadow-md z-50 max-h-40 overflow-y-auto">
+                {contentHistories.map((item, index) => (
+                  <li
+                    key={index}
+                    onMouseDown={() => {
+                      dispatch(setSearch(item.query));
+                      dispatch(fetchContentListAsync(item.query));
+                      setShowHistory(false);
+                    }}
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  >
+                    {item.query}
+                  </li>
+                ))}
+              </ul>
+            )}
         </div>
       )}
     </header>
