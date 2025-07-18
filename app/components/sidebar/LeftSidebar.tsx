@@ -16,7 +16,7 @@ const LeftSidebar: React.FC = () => {
 
   const fullname = useSelector((state: RootState) => state.profile.fullname);
   const pathname = usePathname();
-  
+
   const [showDropdown, setShowDropdown] = useState(false);
 
   useEffect(() => {
@@ -64,9 +64,7 @@ const LeftSidebar: React.FC = () => {
                 "cek-pos",
                 "trace-nik",
                 "trace-imei",
-                "nopol",
-                "noka",
-                "nosin",
+                "kendaraan",
                 "pln",
                 "e-wallet",
                 "cek-rekening",
@@ -103,7 +101,7 @@ const LeftSidebar: React.FC = () => {
               isActive("/") ? "text-green-400 font-bold" : ""
             }`}
           >
-            Home
+            Global Search
           </Link>
         </li>
 

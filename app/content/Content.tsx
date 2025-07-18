@@ -1,7 +1,7 @@
 import React from "react";
 
 import type { Metadata } from "next";
-import ContentItems from "@/app/components/content/ContentItem";
+import Content from "@/app/components/content/Content";
 
 export const metadata: Metadata = {
   title: "Admin | All Transaction",
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 const ContentPage: React.FC = () => {
   return (
-    <ContentItems/>
+    <Content/>
   );
 };
 

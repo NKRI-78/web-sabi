@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import { Construction, Clock } from "lucide-react";
+import { Construction } from "lucide-react";
 
-const OnProgress: React.FC = () => {
+const NotFound: React.FC = () => {
   return (
     <div className="flex items-center w-full justify-center h-screen bg-gray-100">
       <div className="text-center p-8 bg-white rounded-xl shadow-md">
@@ -21,4 +21,4 @@ const OnProgress: React.FC = () => {
   );
 };
 
-export default OnProgress;
+export default NotFound;
