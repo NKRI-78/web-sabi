@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { Search } from "lucide-react";
+import { Menu, Search } from "lucide-react";
 import {
   setSearch,
   fetchContentListAsync,
@@ -9,7 +9,12 @@ import {
 } from "@/redux/slices/contentSlice";
 import { RootState } from "@/redux/store";
 
-const SearchBar = () => {
+interface SearchBarProps {
+  isSidebarOpen: boolean;
+  setIsSidebarOpen: (open: boolean) => void;
+}
+
+const SearchBar = ({ isSidebarOpen, setIsSidebarOpen }: SearchBarProps) => {
   const dispatch = useDispatch<any>();
   const pathname = usePathname();
 
@@ -33,6 +38,14 @@ const SearchBar = () => {
 
   return (
     <header className="flex flex-col h-40 items-center justify-center p-4 relative bg-dark-blue">
+      {!isSidebarOpen && (
+        <div className="flex self-start">
+          <button onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+            <Menu />
+          </button>
+        </div>
+      )}
+
       {pathname !== "/auth/change-password" && pathname !== "/auth/profile" && (
         <div className="w-full my-4 max-w-xl relative">
           <input

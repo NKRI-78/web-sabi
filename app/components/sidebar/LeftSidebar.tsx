@@ -5,13 +5,21 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { AppDispatch, RootState } from "@redux/store";
-import { ChevronRight, ChevronDown } from "lucide-react";
+import { ChevronRight, ChevronDown, ChevronsLeft } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { setShowLogoutModal } from "@redux/slices/modalSlice";
 import { GetProfile } from "@app/lib/profileService";
 import { setFullname } from "@redux/slices/profileSlice";
 
-const LeftSidebar: React.FC = () => {
+interface LeftSidebarProps {
+  isSidebarOpen: boolean;
+  setIsSidebarOpen: (open: boolean) => void;
+}
+
+const LeftSidebar: React.FC<LeftSidebarProps> = ({
+  isSidebarOpen,
+  setIsSidebarOpen,
+}) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const fullname = useSelector((state: RootState) => state.profile.fullname);
@@ -33,6 +41,11 @@ const LeftSidebar: React.FC = () => {
 
   return (
     <div className="fixed top-0 left-0 w-64 h-full bg-gray-800 text-white p-4 z-[110]">
+      <div className="flex justify-end">
+        <button onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+          <ChevronsLeft />
+        </button>
+      </div>
       <div className="flex items-center gap-2 mb-4">
         <img
           src={"/favicon.ico"}
@@ -62,7 +75,7 @@ const LeftSidebar: React.FC = () => {
                 "register",
                 "cek-kk",
                 "cek-pos",
-                "trace-nik",
+                // "trace-nik",
                 "trace-imei",
                 "kendaraan",
                 "pln",
@@ -120,7 +133,9 @@ const LeftSidebar: React.FC = () => {
           <Link
             href="/auth/change-password"
             className={`hover:text-gray-400 ${
-              isActive("/auth/change-password") ? "text-green-400 font-bold" : ""
+              isActive("/auth/change-password")
+                ? "text-green-400 font-bold"
+                : ""
             }`}
           >
             Change Password

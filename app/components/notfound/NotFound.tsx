@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Construction } from "lucide-react";
+import { Clock, Construction } from "lucide-react";
 
 const NotFound: React.FC = () => {
   return (
@@ -11,11 +11,13 @@ const NotFound: React.FC = () => {
           <Construction size={48} />
         </div>
         <h1 className="text-2xl font-semibold mb-2 text-gray-800">
-          Page Under Construction
+          Data Sedang di Update
         </h1>
         <p className="text-gray-600 mb-4 flex items-center justify-center gap-2">
-          This feature is currently in progress.
+          <Clock size={16} />
+          Fitur ini masih dalam pengembangan.
         </p>
+        <p className="text-sm text-gray-400">Mohon kembali lagi nanti.</p>
       </div>
     </div>
   );

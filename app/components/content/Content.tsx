@@ -6,6 +6,7 @@ import { RootState } from "@redux/store";
 
 import { LoadingSpinner } from "@components/loading/Spinner";
 import moment from "moment";
+import Link from "next/link";
 
 const Content: React.FC = () => {
   const contents = useSelector((state: RootState) => state.content.contents);
@@ -789,9 +790,11 @@ const Content: React.FC = () => {
                     </span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
-                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
-                      {item.NIK ?? "N/A"}
-                    </span>
+                    <Link className="text-blue-400" href={`/features/nik`}>
+                      <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                        {item.NIK ?? "N/A"}
+                      </span>
+                    </Link>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
@@ -799,9 +802,14 @@ const Content: React.FC = () => {
                     </span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
-                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
-                      {item.EngineNumber ?? "N/A"}
-                    </span>
+                    <Link
+                      className="text-blue-400"
+                      href={`/features/kendaraan`}
+                    >
+                      <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                        {item.EngineNumber ?? "N/A"}
+                      </span>
+                    </Link>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
