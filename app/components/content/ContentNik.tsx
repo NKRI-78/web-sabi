@@ -8,23 +8,8 @@ import { LoadingSpinner } from "@components/loading/Spinner";
 import { resetContents, setSearch } from "@/redux/slices/contentSlice";
 
 const ContentNik: React.FC = () => {
-  const dispatch = useDispatch();
   const contents = useSelector((state: RootState) => state.content.contents);
   const isLoading = useSelector((state: RootState) => state.content.isLoading);
-  const isRedirect = useSelector(
-    (state: RootState) => state.content.isRedirect
-  );
-
-  useEffect(() => {
-    if (!isRedirect) {
-      dispatch(setSearch(""));
-      dispatch(resetContents());
-    }
-    return () => {
-      dispatch(setSearch(""));
-      dispatch(resetContents());
-    };
-  }, [isRedirect]);
 
   if (isLoading) {
     return (
@@ -79,7 +64,7 @@ const ContentNik: React.FC = () => {
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
-                      Paspor :
+                      NIK :
                     </strong>
                     <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
                       {item.Passport ?? "N/A"}
@@ -128,7 +113,7 @@ const ContentNik: React.FC = () => {
                     </div>
                     <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                       <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
-                        Paspor :
+                        NIK :
                       </strong>
                       <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
                         {item.Passport ?? "N/A"}

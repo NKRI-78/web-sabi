@@ -20,6 +20,7 @@ const Content: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
   const contents = useSelector((state: RootState) => state.content.contents);
+  const search = useSelector((state: RootState) => state.content.search);
   const isLoading = useSelector((state: RootState) => state.content.isLoading);
 
   useEffect(() => {
@@ -31,11 +32,9 @@ const Content: React.FC = () => {
     };
   }, []);
 
-  const handleNavigate = (keyword: string, pathname: string) => {
-    dispatch(setSearch(keyword));
-    dispatch(fetchContentListAsync(keyword));
-
-    router.push(`/features/${pathname}?redirect=1`);
+  const handleNavigate = async (keyword: string, pathname: string) => {
+    router.push(`/features/${pathname}?search=${keyword}`);
+    sessionStorage.setItem("isRedirect", "true");
   };
 
   if (isLoading) {
@@ -181,11 +180,22 @@ const Content: React.FC = () => {
                       {item.Location ?? "N/A"}
                     </span>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                  <div
+                    className="flex items-center gap-2 text-gray-600 text-sm mt-2"
+                    onClick={
+                      item.Passport
+                        ? () => handleNavigate(item.Passport!, "nik")
+                        : () => {}
+                    }
+                  >
                     <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
-                      Paspor :
+                      NIK :
                     </strong>
-                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                    <span
+                      className={`${
+                        item.Passport ? "text-blue-500 cursor-pointer" : ""
+                      } truncate overflow-hidden whitespace-nowrap max-w-full block`}
+                    >
                       {item.Passport ?? "N/A"}
                     </span>
                   </div>
@@ -230,11 +240,22 @@ const Content: React.FC = () => {
                         {item.Phone ?? "N/A"}
                       </span>
                     </div>
-                    <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <div
+                      className="flex items-center gap-2 text-gray-600 text-sm mt-2"
+                      onClick={
+                        item.Passport
+                          ? () => handleNavigate(item.Passport!, "nik")
+                          : () => {}
+                      }
+                    >
                       <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
-                        Paspor :
+                        NIK :
                       </strong>
-                      <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      <span
+                        className={`${
+                          item.Passport ? "text-blue-500 cursor-pointer" : ""
+                        } truncate overflow-hidden whitespace-nowrap max-w-full block`}
+                      >
                         {item.Passport ?? "N/A"}
                       </span>
                     </div>
@@ -1026,14 +1047,7 @@ const Content: React.FC = () => {
                     className="flex items-center gap-2 text-gray-600 text-sm mt-2"
                     onClick={
                       item.NIK
-                        ? () => {
-                            router.push(
-                              `/features/nik?search=${encodeURIComponent(
-                                item.NIK ?? ""
-                              )}`
-                            );
-                            // dispatch(setSearch(item.NIK!));
-                          }
+                        ? () => handleNavigate(item.NIK!, "nik")
                         : () => {}
                     }
                   >

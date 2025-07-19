@@ -74,7 +74,7 @@ const ContentRegister: React.FC = () => {
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
-                      Paspor :
+                      NIK :
                     </strong>
                     <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
                       {item.Passport ?? "N/A"}
@@ -123,7 +123,7 @@ const ContentRegister: React.FC = () => {
                     </div>
                     <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                       <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
-                        Paspor :
+                        NIK :
                       </strong>
                       <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
                         {item.Passport ?? "N/A"}

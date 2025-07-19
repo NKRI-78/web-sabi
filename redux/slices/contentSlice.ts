@@ -59,9 +59,7 @@ const contentSlice = createSlice({
       state.contentHistories = action.payload;
     },
     setSearch(state, action: PayloadAction<any>) {
-      if (action.payload != "") {
-        state.search = action.payload;
-      }
+      state.search = action.payload;
     },
     setIsLoading(state, action: PayloadAction<boolean>) {
       state.isLoading = action.payload;

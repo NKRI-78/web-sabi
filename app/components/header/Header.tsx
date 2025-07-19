@@ -14,8 +14,8 @@ const SearchBar = ({ isSidebarOpen, setIsSidebarOpen }: SearchBarProps) => {
   const dispatch = useDispatch<AppDispatch>();
   const pathname = usePathname();
 
-  const searchParams = useSearchParams();
-  const searchValue = searchParams.get("search");
+  // const searchParams = useSearchParams();
+  // const searchValue = searchParams.get("search");
 
   let placeholder;
 
@@ -41,10 +41,13 @@ const SearchBar = ({ isSidebarOpen, setIsSidebarOpen }: SearchBarProps) => {
 
   // const [showHistory, setShowHistory] = useState(false);
 
-  useEffect(() => {
-    dispatch(setSearch(searchValue!));
-    dispatch(fetchContentListAsync(search));
-  }, [searchValue]);
+  // useEffect(() => {
+  //   if (searchValue) {
+  //     console.log("okee");
+  //     dispatch(setSearch(searchValue!));
+  //     dispatch(fetchContentListAsync(search));
+  //   }
+  // }, [searchValue]);
 
   const onSubmit = () => {
     if (!search.trim()) return;
