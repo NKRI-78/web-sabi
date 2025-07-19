@@ -2,24 +2,40 @@
 
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@redux/store";
+import { AppDispatch, RootState } from "@redux/store";
 
 import { LoadingSpinner } from "@components/loading/Spinner";
-import { resetContents, setSearch } from "@/redux/slices/contentSlice";
+import {
+  fetchContentListAsync,
+  resetContents,
+  setSearch,
+} from "@/redux/slices/contentSlice";
+import { useSearchParams } from "next/navigation";
 
 const ContentRegister: React.FC = () => {
-  const dispatch = useDispatch();
-  const contents = useSelector((state: RootState) => state.content.contents);
-  const isLoading = useSelector((state: RootState) => state.content.isLoading);
+  const dispatch = useDispatch<AppDispatch>();
+  const searchParams = useSearchParams();
+  const searchValue = searchParams.get("search");
 
   useEffect(() => {
-    dispatch(setSearch(""));
-    dispatch(resetContents());
-    return () => {
+    const redirect = sessionStorage.getItem("isRedirect") === "true";
+
+    if (!redirect) {
       dispatch(setSearch(""));
       dispatch(resetContents());
-    };
+    }
+    sessionStorage.removeItem("isRedirect");
   }, []);
+
+  useEffect(() => {
+    if (searchValue) {
+      dispatch(setSearch(searchValue));
+      dispatch(fetchContentListAsync(searchValue));
+    }
+  }, [searchValue]);
+
+  const contents = useSelector((state: RootState) => state.content.contents);
+  const isLoading = useSelector((state: RootState) => state.content.isLoading);
 
   if (isLoading) {
     return (

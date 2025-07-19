@@ -1,11 +1,8 @@
-"use client";
-
 import React from "react";
-import NotFound from "@/app/components/notfound/NotFound";
-import ContentKendaraan from "@/app/components/content/ContentKendaraan";
+import NotFound from "@app/not-found";
 
 const NomorPolisi: React.FC = () => {
-  return <ContentKendaraan />;
+  return <NotFound />;
 };
 
 export default NomorPolisi;
