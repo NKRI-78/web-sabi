@@ -181,8 +181,8 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({
           {showDropdownBill && (
             <ul className="ml-4 mt-2 max-h-64 overflow-y-auto pr-2">
               {[
-                { label: "Nama Perusahaan", path: "pln" },
-                { label: "Nama Owner", path: "bill" },
+                { label: "Nama Perusahaan", path: "company-name" },
+                { label: "Nama Owner", path: "owner-company" },
               ].map((feature, idx) => (
                 <li key={idx} className="mb-2">
                   <Link
