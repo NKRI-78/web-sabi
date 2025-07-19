@@ -18,6 +18,26 @@ const SearchBar = ({ isSidebarOpen, setIsSidebarOpen }: SearchBarProps) => {
   const dispatch = useDispatch<any>();
   const pathname = usePathname();
 
+  let placeholder;
+
+  switch (pathname) {
+    case "/features/vehicle":
+      placeholder = "Ketik No Polisi / No Rangka / No Mesin";
+      break;
+    case "/features/register":
+      placeholder = "Ketik Register";
+      break;
+    case "/features/nik":
+      placeholder = "Ketik NIK";
+      break;
+    case "/features/cek-kk":
+      placeholder = "Ketik NIK / Nama / No KK";
+      break;
+    default:
+      placeholder = "Type anything";
+      break;
+  }
+
   const search = useSelector((state: RootState) => state.content.search);
   const contentHistories = useSelector(
     (state: RootState) => state.content.contentHistories
@@ -50,7 +70,7 @@ const SearchBar = ({ isSidebarOpen, setIsSidebarOpen }: SearchBarProps) => {
         <div className="w-full my-4 max-w-xl relative">
           <input
             type="text"
-            placeholder="Search..."
+            placeholder={placeholder}
             value={search}
             onFocus={() => setShowHistory(true)}
             onBlur={() => setTimeout(() => setShowHistory(false), 200)}
