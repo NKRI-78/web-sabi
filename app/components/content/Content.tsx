@@ -17,7 +17,7 @@ import { AppDispatch } from "@redux/store";
 import { useRouter } from "next/navigation";
 
 const Content: React.FC = () => {
-  const dispatch = useDispatch<any>();
+  const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
   const contents = useSelector((state: RootState) => state.content.contents);
   const isLoading = useSelector((state: RootState) => state.content.isLoading);
@@ -1026,7 +1026,14 @@ const Content: React.FC = () => {
                     className="flex items-center gap-2 text-gray-600 text-sm mt-2"
                     onClick={
                       item.NIK
-                        ? () => handleNavigate(item.NIK!, "nik")
+                        ? () => {
+                            router.push(
+                              `/features/nik?search=${encodeURIComponent(
+                                item.NIK ?? ""
+                              )}`
+                            );
+                            // dispatch(setSearch(item.NIK!));
+                          }
                         : () => {}
                     }
                   >

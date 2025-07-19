@@ -25,6 +25,7 @@ export const fetchContentHistoryAsync = createAsyncThunk(
 interface ContentState {
   contents: Content | null;
   contentHistories: ContentHistoryDataItem[];
+  placeholder: string;
   search: string;
   isLoading: boolean;
   error: string | null;
@@ -34,6 +35,7 @@ interface ContentState {
 const initialState: ContentState = {
   contents: null,
   contentHistories: [],
+  placeholder: "",
   search: "",
   isLoading: false,
   error: null,
@@ -47,14 +49,19 @@ const contentSlice = createSlice({
     setContents(state, action: PayloadAction<Content>) {
       state.contents = action.payload;
     },
+    setSearchPlacholder(state, action: PayloadAction<string>) {
+      state.placeholder = action.payload;
+    },
     setContentHistories(
       state,
       action: PayloadAction<ContentHistoryDataItem[]>
     ) {
       state.contentHistories = action.payload;
     },
-    setSearch(state, action: PayloadAction<string>) {
-      state.search = action.payload;
+    setSearch(state, action: PayloadAction<any>) {
+      if (action.payload != "") {
+        state.search = action.payload;
+      }
     },
     setIsLoading(state, action: PayloadAction<boolean>) {
       state.isLoading = action.payload;
@@ -90,6 +97,7 @@ const contentSlice = createSlice({
 
 export const {
   setContents,
+  setSearchPlacholder,
   setSearch,
   setIsLoading,
   setError,

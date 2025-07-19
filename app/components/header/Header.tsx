@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { useEffect } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { Menu, Search } from "lucide-react";
 import { setSearch, fetchContentListAsync } from "@/redux/slices/contentSlice";
-import { RootState } from "@/redux/store";
+import { AppDispatch, RootState } from "@/redux/store";
 
 interface SearchBarProps {
   isSidebarOpen: boolean;
@@ -11,8 +11,11 @@ interface SearchBarProps {
 }
 
 const SearchBar = ({ isSidebarOpen, setIsSidebarOpen }: SearchBarProps) => {
-  const dispatch = useDispatch<any>();
+  const dispatch = useDispatch<AppDispatch>();
   const pathname = usePathname();
+
+  const searchParams = useSearchParams();
+  const searchValue = searchParams.get("search");
 
   let placeholder;
 
@@ -37,6 +40,11 @@ const SearchBar = ({ isSidebarOpen, setIsSidebarOpen }: SearchBarProps) => {
   const search = useSelector((state: RootState) => state.content.search);
 
   // const [showHistory, setShowHistory] = useState(false);
+
+  useEffect(() => {
+    dispatch(setSearch(searchValue!));
+    dispatch(fetchContentListAsync(search));
+  }, [searchValue]);
 
   const onSubmit = () => {
     if (!search.trim()) return;
