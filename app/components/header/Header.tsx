@@ -2,8 +2,13 @@ import { useEffect } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { Menu, Search } from "lucide-react";
-import { setSearch, fetchContentListAsync } from "@/redux/slices/contentSlice";
+import {
+  setSearch,
+  fetchContentListAsync,
+  fetchContentKKListAsync,
+} from "@/redux/slices/contentSlice";
 import { AppDispatch, RootState } from "@/redux/store";
+import { fetchContentKKList } from "@/app/lib/contentService";
 
 interface SearchBarProps {
   isSidebarOpen: boolean;
@@ -51,7 +56,12 @@ const SearchBar = ({ isSidebarOpen, setIsSidebarOpen }: SearchBarProps) => {
 
   const onSubmit = () => {
     if (!search.trim()) return;
-    dispatch(fetchContentListAsync(search));
+
+    if (pathname == "/features/cek-kk") {
+      dispatch(fetchContentKKListAsync(search));
+    } else {
+      dispatch(fetchContentListAsync(search));
+    }
     // setShowHistory(false);
   };
 

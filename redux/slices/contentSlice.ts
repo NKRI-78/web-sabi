@@ -1,15 +1,25 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { fetchContentHistories, fetchContentList } from "@lib/contentService";
-import { Content } from "@interfaces/content/content";
 import {
-  ContentHistory,
-  ContentHistoryDataItem,
-} from "@interfaces/content/content-history";
+  fetchContentHistories,
+  fetchContentKKList,
+  fetchContentList,
+} from "@lib/contentService";
+import { Content } from "@interfaces/content/content";
+import { ContentHistoryDataItem } from "@interfaces/content/content-history";
+import { ContentKkData } from "@/app/interfaces/content/kk";
 
 export const fetchContentListAsync = createAsyncThunk(
   "content/list",
   async (search: string) => {
     const response = await fetchContentList(search);
+    return response;
+  }
+);
+
+export const fetchContentKKListAsync = createAsyncThunk(
+  "content/kk/list",
+  async (search: string) => {
+    const response = await fetchContentKKList(search);
     return response;
   }
 );
@@ -25,6 +35,7 @@ export const fetchContentHistoryAsync = createAsyncThunk(
 interface ContentState {
   contents: Content | null;
   contentHistories: ContentHistoryDataItem[];
+  contentKK: ContentKkData[];
   placeholder: string;
   search: string;
   isLoading: boolean;
@@ -35,6 +46,7 @@ interface ContentState {
 const initialState: ContentState = {
   contents: null,
   contentHistories: [],
+  contentKK: [],
   placeholder: "",
   search: "",
   isLoading: false,
@@ -48,6 +60,9 @@ const contentSlice = createSlice({
   reducers: {
     setContents(state, action: PayloadAction<Content>) {
       state.contents = action.payload;
+    },
+    setContentsKK(state, action: PayloadAction<ContentKkData[]>) {
+      state.contentKK = action.payload;
     },
     setSearchPlacholder(state, action: PayloadAction<string>) {
       state.placeholder = action.payload;
@@ -87,6 +102,19 @@ const contentSlice = createSlice({
         state.isLoading = false;
         state.error = action.error.message || "Failed to fetch content";
       })
+      .addCase(fetchContentKKListAsync.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchContentKKListAsync.fulfilled, (state, action) => {
+        console.log("content kk", action.payload)
+        state.contentKK = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(fetchContentKKListAsync.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message || "Failed to fetch content";
+      })
+
       .addCase(fetchContentHistoryAsync.fulfilled, (state, action) => {
         state.contentHistories = action.payload;
       });
