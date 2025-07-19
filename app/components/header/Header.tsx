@@ -2,11 +2,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { Menu, Search } from "lucide-react";
-import {
-  setSearch,
-  fetchContentListAsync,
-  fetchContentHistoryAsync,
-} from "@/redux/slices/contentSlice";
+import { setSearch, fetchContentListAsync } from "@/redux/slices/contentSlice";
 import { RootState } from "@/redux/store";
 
 interface SearchBarProps {
@@ -39,21 +35,13 @@ const SearchBar = ({ isSidebarOpen, setIsSidebarOpen }: SearchBarProps) => {
   }
 
   const search = useSelector((state: RootState) => state.content.search);
-  const contentHistories = useSelector(
-    (state: RootState) => state.content.contentHistories
-  );
 
-  const [showHistory, setShowHistory] = useState(false);
-
-  useEffect(() => {
-    dispatch(fetchContentHistoryAsync());
-  }, [dispatch]);
+  // const [showHistory, setShowHistory] = useState(false);
 
   const onSubmit = () => {
     if (!search.trim()) return;
     dispatch(fetchContentListAsync(search));
-    dispatch(fetchContentHistoryAsync());
-    setShowHistory(false);
+    // setShowHistory(false);
   };
 
   return (
@@ -72,8 +60,8 @@ const SearchBar = ({ isSidebarOpen, setIsSidebarOpen }: SearchBarProps) => {
             type="text"
             placeholder={placeholder}
             value={search}
-            onFocus={() => setShowHistory(true)}
-            onBlur={() => setTimeout(() => setShowHistory(false), 200)}
+            // onFocus={() => setShowHistory(true)}
+            // onBlur={() => setTimeout(() => setShowHistory(false), 200)}
             onChange={(e) => dispatch(setSearch(e.target.value))}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
@@ -88,7 +76,7 @@ const SearchBar = ({ isSidebarOpen, setIsSidebarOpen }: SearchBarProps) => {
             className="absolute cursor-pointer right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
             size={20}
           />
-          {showHistory &&
+          {/* {showHistory &&
             Array.isArray(contentHistories) &&
             contentHistories.length > 0 && (
               <ul className="absolute left-0 right-0 top-full mt-1 bg-white text-black rounded-md shadow-md z-50 max-h-40 overflow-y-auto">
@@ -106,7 +94,7 @@ const SearchBar = ({ isSidebarOpen, setIsSidebarOpen }: SearchBarProps) => {
                   </li>
                 ))}
               </ul>
-            )}
+            )} */}
         </div>
       )}
     </header>

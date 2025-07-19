@@ -1,9 +1,22 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Clock, Construction } from "lucide-react";
+import { useDispatch } from "react-redux";
+import { resetContents, setSearch } from "@/redux/slices/contentSlice";
 
 const NotFound: React.FC = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setSearch(""));
+    dispatch(resetContents());
+    return () => {
+      dispatch(setSearch(""));
+      dispatch(resetContents());
+    };
+  }, []);
+
   return (
     <div className="flex items-center w-full justify-center h-screen bg-gray-100">
       <div className="text-center p-8 bg-white rounded-xl shadow-md">

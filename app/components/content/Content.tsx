@@ -1,16 +1,44 @@
 "use client";
 
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@redux/store";
 
 import { LoadingSpinner } from "@components/loading/Spinner";
 import moment from "moment";
 import Link from "next/link";
+import {
+  fetchContentListAsync,
+  resetContents,
+  setRedirect,
+  setSearch,
+} from "@/redux/slices/contentSlice";
+import { AppDispatch } from "@redux/store";
+import { useRouter } from "next/navigation";
 
 const Content: React.FC = () => {
+  const dispatch = useDispatch<any>();
+  const router = useRouter();
   const contents = useSelector((state: RootState) => state.content.contents);
+  const search = useSelector((state: RootState) => state.content.search);
   const isLoading = useSelector((state: RootState) => state.content.isLoading);
+
+  useEffect(() => {
+    dispatch(setSearch(""));
+    dispatch(resetContents());
+    return () => {
+      dispatch(setSearch(""));
+      dispatch(resetContents());
+    };
+  }, []);
+
+  const handleNavigate = (keyword: string, pathname: string) => {
+    dispatch(setSearch(keyword));
+    dispatch(fetchContentListAsync(keyword));
+    dispatch(setRedirect(true));
+
+    router.push(`/features/${pathname}`);
+  };
 
   if (isLoading) {
     return (
@@ -789,27 +817,42 @@ const Content: React.FC = () => {
                       {item.Address ?? "N/A"}
                     </span>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
-                    <Link className="text-blue-400" href={`/features/nik`}>
-                      <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
-                        {item.NIK ?? "N/A"}
-                      </span>
-                    </Link>
+                  <div
+                    className="flex items-center gap-2 text-gray-600 text-sm mt-2"
+                    onClick={
+                      item.NIK
+                        ? () => handleNavigate(item.NIK!, "nik")
+                        : () => {}
+                    }
+                  >
+                    <span
+                      className={`${
+                        item.NIK ? "text-blue-500 cursor-pointer" : ""
+                      } truncate overflow-hidden whitespace-nowrap max-w-full block`}
+                    >
+                      {item.NIK ?? "N/A"}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
                       {item.BPKB ?? "N/A"}
                     </span>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
-                    <Link
-                      className="text-blue-400"
-                      href={`/features/kendaraan`}
+                  <div
+                    className="flex items-center gap-2 text-gray-600 text-sm mt-2"
+                    onClick={
+                      item.EngineNumber
+                        ? () => handleNavigate(item.EngineNumber, "nosin")
+                        : () => {}
+                    }
+                  >
+                    <span
+                      className={`${
+                        item.EngineNumber ? "text-blue-500 cursor-pointer" : ""
+                      } truncate overflow-hidden whitespace-nowrap max-w-full block`}
                     >
-                      <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
-                        {item.EngineNumber ?? "N/A"}
-                      </span>
-                    </Link>
+                      {item.EngineNumber ?? "N/A"}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">

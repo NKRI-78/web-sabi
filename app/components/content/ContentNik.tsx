@@ -1,14 +1,30 @@
 "use client";
 
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@redux/store";
 
 import { LoadingSpinner } from "@components/loading/Spinner";
+import { resetContents, setSearch } from "@/redux/slices/contentSlice";
 
 const ContentNik: React.FC = () => {
+  const dispatch = useDispatch();
   const contents = useSelector((state: RootState) => state.content.contents);
   const isLoading = useSelector((state: RootState) => state.content.isLoading);
+  const isRedirect = useSelector(
+    (state: RootState) => state.content.isRedirect
+  );
+
+  useEffect(() => {
+    if (!isRedirect) {
+      dispatch(setSearch(""));
+      dispatch(resetContents());
+    }
+    return () => {
+      dispatch(setSearch(""));
+      dispatch(resetContents());
+    };
+  }, [isRedirect]);
 
   if (isLoading) {
     return (

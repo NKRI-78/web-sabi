@@ -1,16 +1,21 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { fetchContentHistories, fetchContentList } from '@lib/contentService';
-import { Content } from '@interfaces/content/content';
-import { ContentHistory, ContentHistoryDataItem } from '@interfaces/content/content-history';
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { fetchContentHistories, fetchContentList } from "@lib/contentService";
+import { Content } from "@interfaces/content/content";
+import {
+  ContentHistory,
+  ContentHistoryDataItem,
+} from "@interfaces/content/content-history";
 
-export const fetchContentListAsync = createAsyncThunk('content/list',
+export const fetchContentListAsync = createAsyncThunk(
+  "content/list",
   async (search: string) => {
     const response = await fetchContentList(search);
     return response;
   }
 );
 
-export const fetchContentHistoryAsync = createAsyncThunk('content/histories',
+export const fetchContentHistoryAsync = createAsyncThunk(
+  "content/histories",
   async () => {
     const response = await fetchContentHistories();
     return response;
@@ -23,6 +28,7 @@ interface ContentState {
   search: string;
   isLoading: boolean;
   error: string | null;
+  isRedirect: boolean;
 }
 
 const initialState: ContentState = {
@@ -31,16 +37,20 @@ const initialState: ContentState = {
   search: "",
   isLoading: false,
   error: null,
+  isRedirect: false,
 };
 
 const contentSlice = createSlice({
-  name: 'contents',
+  name: "contents",
   initialState,
   reducers: {
     setContents(state, action: PayloadAction<Content>) {
       state.contents = action.payload;
     },
-    setContentHistories(state, action: PayloadAction<ContentHistoryDataItem[]>) {
+    setContentHistories(
+      state,
+      action: PayloadAction<ContentHistoryDataItem[]>
+    ) {
       state.contentHistories = action.payload;
     },
     setSearch(state, action: PayloadAction<string>) {
@@ -51,6 +61,12 @@ const contentSlice = createSlice({
     },
     setError(state, action: PayloadAction<string | null>) {
       state.error = action.payload;
+    },
+    setRedirect(state, action: PayloadAction<boolean>) {
+      state.isRedirect = action.payload;
+    },
+    resetContents(state) {
+      state.contents = null;
     },
   },
   extraReducers: (builder) => {
@@ -72,5 +88,13 @@ const contentSlice = createSlice({
   },
 });
 
-export const { setContents, setSearch, setIsLoading, setError, setContentHistories } = contentSlice.actions;
+export const {
+  setContents,
+  setSearch,
+  setIsLoading,
+  setError,
+  setContentHistories,
+  setRedirect,
+  resetContents,
+} = contentSlice.actions;
 export default contentSlice.reducer;
