@@ -8,24 +8,8 @@ import { LoadingSpinner } from "@components/loading/Spinner";
 import { resetContents, setSearch } from "@/redux/slices/contentSlice";
 
 const ContentKendaraan: React.FC = () => {
-  const dispatch = useDispatch();
   const contents = useSelector((state: RootState) => state.content.contents);
   const isLoading = useSelector((state: RootState) => state.content.isLoading);
-  const isRedirect = useSelector(
-    (state: RootState) => state.content.isRedirect
-  );
-
-  console.log(isRedirect);
-  useEffect(() => {
-    if (!isRedirect) {
-      dispatch(setSearch(""));
-      dispatch(resetContents());
-    }
-    return () => {
-      dispatch(setSearch(""));
-      dispatch(resetContents());
-    };
-  }, []);
 
   if (isLoading) {
     return (
@@ -48,7 +32,7 @@ const ContentKendaraan: React.FC = () => {
               className={
                 contents.data.List.IndonesiaCarOwner.Data.length === 1
                   ? "flex gap-6"
-                  : "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+                  : "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
               }
             >
               {contents.data.List.IndonesiaCarOwner.Data.map((item, index) => (
@@ -57,38 +41,75 @@ const ContentKendaraan: React.FC = () => {
                   className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all"
                 >
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      Nama :
+                    </strong>
                     <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
                       {item.FullName ?? "N/A"}
                     </span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      Alamat :
+                    </strong>
                     <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
                       {item.Address ?? "N/A"}
                     </span>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
-                    {/* <Link className="text-blue-400" href={`/features/nik`}> */}
-                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                  <div
+                    className="flex items-center gap-2 text-gray-600 text-sm mt-2"
+                    // onClick={
+                    //   item.NIK
+                    //     ? () => handleNavigate(item.NIK!, "nik")
+                    //     : () => {}
+                    // }
+                  >
+                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      NIK :
+                    </strong>
+                    <span
+                      className={`truncate overflow-hidden whitespace-nowrap max-w-full block`}
+                    >
                       {item.NIK ?? "N/A"}
                     </span>
-                    {/* </Link> */}
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      BPKB :
+                    </strong>
                     <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
                       {item.BPKB ?? "N/A"}
                     </span>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
-                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                  <div
+                    className="flex items-center gap-2 text-gray-600 text-sm mt-2"
+                    // onClick={
+                    //   item.EngineNumber
+                    //     ? () => handleNavigate(item.EngineNumber, "vehicle")
+                    //     : () => {}
+                    // }
+                  >
+                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      No Mesin :
+                    </strong>
+                    <span
+                      className={`truncate overflow-hidden whitespace-nowrap max-w-full block`}
+                    >
                       {item.EngineNumber ?? "N/A"}
                     </span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      Tipe :
+                    </strong>
                     <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
                       {item.Type ?? "N/A"}
                     </span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      Tahun Pembuatan :
+                    </strong>
                     <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
                       {item.VehicleYear ?? "N/A"}
                     </span>

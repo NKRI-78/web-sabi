@@ -21,10 +21,10 @@ const SearchBar = ({ isSidebarOpen, setIsSidebarOpen }: SearchBarProps) => {
       placeholder = "Ketik No Polisi / No Rangka / No Mesin";
       break;
     case "/features/register":
-      placeholder = "Ketik Register";
+      placeholder = "Ketik Nomor Handphone";
       break;
     case "/features/nik":
-      placeholder = "Ketik NIK";
+      placeholder = "Ketik NIK / Nama";
       break;
     case "/features/cek-kk":
       placeholder = "Ketik NIK / Nama / No KK";

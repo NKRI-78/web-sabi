@@ -155,84 +155,23 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({
             </ul>
           )}
         </li>
+
         <li className="mb-4">
-          <button
-            onClick={() => setShowDropdownInformation(!showDropdownInformation)}
-            className="hover:text-gray-400 w-full text-left flex items-center justify-between"
+          <Link
+            href="/features/vehicle"
+            className={`hover:text-gray-400 ${
+              isActive("/features/vehicle") ? "text-green-400 font-bold" : ""
+            }`}
           >
-            <span>Informasi dan Pelacakan Perangkat</span>
-            {showDropdownInformation ? (
-              <ChevronDown size={16} />
-            ) : (
-              <ChevronRight size={16} />
-            )}
-          </button>
-          {showDropdownInformation && (
-            <ul className="ml-4 mt-2 max-h-64 overflow-y-auto pr-2">
-              {[{ label: "Trace IMEI", path: "trace-imei" }].map(
-                (feature, idx) => (
-                  <li key={idx} className="mb-2">
-                    <Link
-                      href={`/features/${feature.path}`}
-                      className={`hover:text-gray-300 ${
-                        isActive(`/features/${feature.path}`)
-                          ? "text-green-400 font-bold"
-                          : ""
-                      }`}
-                    >
-                      {feature.label
-                        .replace(/-/g, " ")
-                        .replace(/\b\w/g, (c) => c.toUpperCase())}
-                    </Link>
-                  </li>
-                )
-              )}
-            </ul>
-          )}
-        </li>
-        <li className="mb-4">
-          <button
-            onClick={() => setShowDropdownVehicle(!showDropdownVehicle)}
-            className="hover:text-gray-400 w-full text-left flex items-center justify-between"
-          >
-            <span>Kendaraan</span>
-            {showDropdownVehicle ? (
-              <ChevronDown size={16} />
-            ) : (
-              <ChevronRight size={16} />
-            )}
-          </button>
-          {showDropdownVehicle && (
-            <ul className="ml-4 mt-2 max-h-64 overflow-y-auto pr-2">
-              {[
-                { label: "No Polisi", path: "nopol" },
-                { label: "No Rangka", path: "noka" },
-                { label: "No Mesin", path: "nosin" },
-              ].map((feature, idx) => (
-                <li key={idx} className="mb-2">
-                  <Link
-                    href={`/features/${feature.path}`}
-                    className={`hover:text-gray-300 ${
-                      isActive(`/features/${feature.path}`)
-                        ? "text-green-400 font-bold"
-                        : ""
-                    }`}
-                  >
-                    {feature.label
-                      .replace(/-/g, " ")
-                      .replace(/\b\w/g, (c) => c.toUpperCase())}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          )}
+            Kendaraan
+          </Link>
         </li>
         <li className="mb-4">
           <button
             onClick={() => setShowDropdownBill(!showDropdownBill)}
             className="hover:text-gray-400 w-full text-left flex items-center justify-between"
           >
-            <span> Listrik dan Tagihan</span>
+            <span>Informasi Perusahaan</span>
             {showDropdownBill ? (
               <ChevronDown size={16} />
             ) : (
@@ -242,8 +181,8 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({
           {showDropdownBill && (
             <ul className="ml-4 mt-2 max-h-64 overflow-y-auto pr-2">
               {[
-                { label: "PLN", path: "pln" },
-                { label: "Billing", path: "bill" },
+                { label: "Nama Perusahaan", path: "pln" },
+                { label: "Nama Owner", path: "bill" },
               ].map((feature, idx) => (
                 <li key={idx} className="mb-2">
                   <Link
@@ -304,7 +243,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({
             onClick={() => setShowDropdownSecurity(!showDropdownSecurity)}
             className="hover:text-gray-400 w-full text-left flex items-center justify-between"
           >
-            <span>Keamanan dan Penipuan</span>
+            <span>CyberLeaks Check</span>
             {showDropdownSecurity ? (
               <ChevronDown size={16} />
             ) : (

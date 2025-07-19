@@ -45,7 +45,7 @@ const ContentNik: React.FC = () => {
               className={
                 contents.data.List.Dukcapil.Data.length === 1
                   ? "flex gap-6"
-                  : "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+                  : "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
               }
             >
               {contents.data.List.Dukcapil.Data.map((item, index) => (
@@ -54,26 +54,41 @@ const ContentNik: React.FC = () => {
                   className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all"
                 >
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      Nama :
+                    </strong>
                     <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
                       {item.FullName ?? "N/A"}
                     </span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      Alamat :
+                    </strong>
                     <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
                       {item.Address ?? "N/A"}
                     </span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      Lokasi :
+                    </strong>
                     <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
                       {item.Location ?? "N/A"}
                     </span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      Paspor :
+                    </strong>
                     <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
                       {item.Passport ?? "N/A"}
                     </span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      Gender :
+                    </strong>
                     <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
                       {item.Gender ?? "N/A"}
                     </span>
@@ -94,7 +109,7 @@ const ContentNik: React.FC = () => {
               className={
                 contents.data.List["KomInfo Indonesia"].Data.length === 1
                   ? "flex gap-6"
-                  : "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+                  : "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
               }
             >
               {contents.data.List["KomInfo Indonesia"].Data.map(
@@ -104,21 +119,33 @@ const ContentNik: React.FC = () => {
                     className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all"
                   >
                     <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                      <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                        No Hp :
+                      </strong>
                       <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
                         {item.Phone ?? "N/A"}
                       </span>
                     </div>
                     <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                      <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                        Paspor :
+                      </strong>
                       <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
                         {item.Passport ?? "N/A"}
                       </span>
                     </div>
                     <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                      <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                        Provide :
+                      </strong>
                       <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
                         {item.Provider ?? "N/A"}
                       </span>
                     </div>
                     <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                      <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                        Tanggal Daftar :
+                      </strong>
                       <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
                         {item.RegDate ?? "N/A"}
                       </span>
