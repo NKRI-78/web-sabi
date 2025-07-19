@@ -25,7 +25,14 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({
   const fullname = useSelector((state: RootState) => state.profile.fullname);
   const pathname = usePathname();
 
-  const [showDropdown, setShowDropdown] = useState(false);
+  const [showDropdownIdentity, setShowDropdownIdentity] = useState(false);
+  const [showDropdownLocation, setShowDropdownLocation] = useState(false);
+  const [showDropdownInformation, setShowDropdownInformation] = useState(false);
+  const [showDropdownVehicle, setShowDropdownVehicle] = useState(false);
+  const [showDropdownBill, setShowDropdownBill] = useState(false);
+  const [showDropdownFinance, setShowDropdownFinance] = useState(false);
+  const [showDropdownSecurity, setShowDropdownSecurity] = useState(false);
+  const [showDropdownSettings, setShowDropdownSettings] = useState(false);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -40,7 +47,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({
   const isActive = (path: string) => pathname === path;
 
   return (
-    <div className="fixed top-0 left-0 w-64 h-full bg-gray-800 text-white p-4 z-[110]">
+    <div className="fixed top-0 left-0 w-64 h-full bg-gray-800 text-white p-4 z-[110] overflow-y-auto">
       <div className="flex justify-end">
         <button onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
           <ChevronsLeft />
@@ -57,57 +64,6 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({
 
       <ul>
         <li className="mb-4">
-          <button
-            onClick={() => setShowDropdown(!showDropdown)}
-            className="hover:text-gray-400 w-full text-left flex items-center justify-between"
-          >
-            <span>Features</span>
-            {showDropdown ? (
-              <ChevronDown size={16} />
-            ) : (
-              <ChevronRight size={16} />
-            )}
-          </button>
-          {showDropdown && (
-            <ul className="ml-4 mt-2 max-h-64 overflow-y-auto pr-2">
-              {[
-                "nik",
-                "register",
-                "cek-kk",
-                "cek-pos",
-                // "trace-nik",
-                "trace-imei",
-                "kendaraan",
-                "pln",
-                "e-wallet",
-                "cek-rekening",
-                "imei-2-phone",
-                "phone-2-imei",
-                "gsm-tracker",
-                "bill",
-                "phising",
-                "cek-imei",
-              ].map((feature) => (
-                <li key={feature} className="mb-2">
-                  <Link
-                    href={`/features/${feature}`}
-                    className={`hover:text-gray-300 ${
-                      isActive(`/features/${feature}`)
-                        ? "text-green-400 font-bold"
-                        : ""
-                    }`}
-                  >
-                    {feature
-                      .replace(/-/g, " ")
-                      .replace(/\b\w/g, (c) => c.toUpperCase())}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          )}
-        </li>
-
-        <li className="mb-4">
           <Link
             href="/"
             className={`hover:text-gray-400 ${
@@ -117,35 +73,308 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({
             Global Search
           </Link>
         </li>
-
         <li className="mb-4">
-          <Link
-            href="/auth/profile"
-            className={`hover:text-gray-400 ${
-              isActive("/auth/profile") ? "text-green-400 font-bold" : ""
-            }`}
+          <button
+            onClick={() => setShowDropdownIdentity(!showDropdownIdentity)}
+            className="hover:text-gray-400 w-full text-left flex items-center justify-between"
           >
-            Profile
-          </Link>
+            <span>Identitas dan Kependudukan</span>
+            {showDropdownIdentity ? (
+              <ChevronDown size={16} />
+            ) : (
+              <ChevronRight size={16} />
+            )}
+          </button>
+          {showDropdownIdentity && (
+            <ul className="ml-4 mt-2 max-h-64 overflow-y-auto pr-2">
+              {[
+                { label: "N.I.K", path: "nik" },
+                {
+                  label: "Register",
+                  path: "register",
+                },
+                {
+                  label: "Kartu Keluarga",
+                  path: "cek-kk",
+                },
+              ].map((feature, idx) => (
+                <li key={idx} className="mb-2">
+                  <Link
+                    href={`/features/${feature.path}`}
+                    className={`hover:text-gray-300 ${
+                      isActive(`/features/${feature.path}`)
+                        ? "text-green-400 font-bold"
+                        : ""
+                    }`}
+                  >
+                    {feature.label
+                      .replace(/-/g, " ")
+                      .replace(/\b\w/g, (c) => c.toUpperCase())}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
         </li>
-
         <li className="mb-4">
-          <Link
-            href="/auth/change-password"
-            className={`hover:text-gray-400 ${
-              isActive("/auth/change-password")
-                ? "text-green-400 font-bold"
-                : ""
-            }`}
+          <button
+            onClick={() => setShowDropdownLocation(!showDropdownLocation)}
+            className="hover:text-gray-400 w-full text-left flex items-center justify-between"
           >
-            Change Password
-          </Link>
+            <span>Lokasi dan Pelacakan</span>
+            {showDropdownLocation ? (
+              <ChevronDown size={16} />
+            ) : (
+              <ChevronRight size={16} />
+            )}
+          </button>
+          {showDropdownLocation && (
+            <ul className="ml-4 mt-2 max-h-64 overflow-y-auto pr-2">
+              {[
+                { label: "Location", path: "location" },
+                {
+                  label: "GSM Tracker",
+                  path: "gsm-tracker",
+                },
+              ].map((feature, idx) => (
+                <li key={idx} className="mb-2">
+                  <Link
+                    href={`/features/${feature.path}`}
+                    className={`hover:text-gray-300 ${
+                      isActive(`/features/${feature.path}`)
+                        ? "text-green-400 font-bold"
+                        : ""
+                    }`}
+                  >
+                    {feature.label
+                      .replace(/-/g, " ")
+                      .replace(/\b\w/g, (c) => c.toUpperCase())}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
         </li>
-
+        <li className="mb-4">
+          <button
+            onClick={() => setShowDropdownInformation(!showDropdownInformation)}
+            className="hover:text-gray-400 w-full text-left flex items-center justify-between"
+          >
+            <span>Informasi dan Pelacakan Perangkat</span>
+            {showDropdownInformation ? (
+              <ChevronDown size={16} />
+            ) : (
+              <ChevronRight size={16} />
+            )}
+          </button>
+          {showDropdownInformation && (
+            <ul className="ml-4 mt-2 max-h-64 overflow-y-auto pr-2">
+              {[{ label: "Trace IMEI", path: "trace-imei" }].map(
+                (feature, idx) => (
+                  <li key={idx} className="mb-2">
+                    <Link
+                      href={`/features/${feature.path}`}
+                      className={`hover:text-gray-300 ${
+                        isActive(`/features/${feature.path}`)
+                          ? "text-green-400 font-bold"
+                          : ""
+                      }`}
+                    >
+                      {feature.label
+                        .replace(/-/g, " ")
+                        .replace(/\b\w/g, (c) => c.toUpperCase())}
+                    </Link>
+                  </li>
+                )
+              )}
+            </ul>
+          )}
+        </li>
+        <li className="mb-4">
+          <button
+            onClick={() => setShowDropdownVehicle(!showDropdownVehicle)}
+            className="hover:text-gray-400 w-full text-left flex items-center justify-between"
+          >
+            <span>Kendaraan</span>
+            {showDropdownVehicle ? (
+              <ChevronDown size={16} />
+            ) : (
+              <ChevronRight size={16} />
+            )}
+          </button>
+          {showDropdownVehicle && (
+            <ul className="ml-4 mt-2 max-h-64 overflow-y-auto pr-2">
+              {[
+                { label: "No Polisi", path: "nopol" },
+                { label: "No Rangka", path: "noka" },
+                { label: "No Mesin", path: "nosin" },
+              ].map((feature, idx) => (
+                <li key={idx} className="mb-2">
+                  <Link
+                    href={`/features/${feature.path}`}
+                    className={`hover:text-gray-300 ${
+                      isActive(`/features/${feature.path}`)
+                        ? "text-green-400 font-bold"
+                        : ""
+                    }`}
+                  >
+                    {feature.label
+                      .replace(/-/g, " ")
+                      .replace(/\b\w/g, (c) => c.toUpperCase())}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+        <li className="mb-4">
+          <button
+            onClick={() => setShowDropdownBill(!showDropdownBill)}
+            className="hover:text-gray-400 w-full text-left flex items-center justify-between"
+          >
+            <span> Listrik dan Tagihan</span>
+            {showDropdownBill ? (
+              <ChevronDown size={16} />
+            ) : (
+              <ChevronRight size={16} />
+            )}
+          </button>
+          {showDropdownBill && (
+            <ul className="ml-4 mt-2 max-h-64 overflow-y-auto pr-2">
+              {[
+                { label: "PLN", path: "pln" },
+                { label: "Billing", path: "bill" },
+              ].map((feature, idx) => (
+                <li key={idx} className="mb-2">
+                  <Link
+                    href={`/features/${feature.path}`}
+                    className={`hover:text-gray-300 ${
+                      isActive(`/features/${feature.path}`)
+                        ? "text-green-400 font-bold"
+                        : ""
+                    }`}
+                  >
+                    {feature.label
+                      .replace(/-/g, " ")
+                      .replace(/\b\w/g, (c) => c.toUpperCase())}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+        <li className="mb-4">
+          <button
+            onClick={() => setShowDropdownFinance(!showDropdownFinance)}
+            className="hover:text-gray-400 w-full text-left flex items-center justify-between"
+          >
+            <span>Keuangan</span>
+            {showDropdownFinance ? (
+              <ChevronDown size={16} />
+            ) : (
+              <ChevronRight size={16} />
+            )}
+          </button>
+          {showDropdownFinance && (
+            <ul className="ml-4 mt-2 max-h-64 overflow-y-auto pr-2">
+              {[
+                { label: "E Wallet", path: "e-wallet" },
+                { label: "Bank", path: "cek-rekening" },
+              ].map((feature, idx) => (
+                <li key={idx} className="mb-2">
+                  <Link
+                    href={`/features/${feature.path}`}
+                    className={`hover:text-gray-300 ${
+                      isActive(`/features/${feature.path}`)
+                        ? "text-green-400 font-bold"
+                        : ""
+                    }`}
+                  >
+                    {feature.label
+                      .replace(/-/g, " ")
+                      .replace(/\b\w/g, (c) => c.toUpperCase())}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+        <li className="mb-4">
+          <button
+            onClick={() => setShowDropdownSecurity(!showDropdownSecurity)}
+            className="hover:text-gray-400 w-full text-left flex items-center justify-between"
+          >
+            <span>Keamanan dan Penipuan</span>
+            {showDropdownSecurity ? (
+              <ChevronDown size={16} />
+            ) : (
+              <ChevronRight size={16} />
+            )}
+          </button>
+          {showDropdownSecurity && (
+            <ul className="ml-4 mt-2 max-h-64 overflow-y-auto pr-2">
+              {[{ label: "Phising", path: "phising" }].map((feature, idx) => (
+                <li key={idx} className="mb-2">
+                  <Link
+                    href={`/features/${feature.path}`}
+                    className={`hover:text-gray-300 ${
+                      isActive(`/features/${feature.path}`)
+                        ? "text-green-400 font-bold"
+                        : ""
+                    }`}
+                  >
+                    {feature.label
+                      .replace(/-/g, " ")
+                      .replace(/\b\w/g, (c) => c.toUpperCase())}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+        <li className="mb-4">
+          <button
+            onClick={() => setShowDropdownSettings(!showDropdownSettings)}
+            className="hover:text-gray-400 w-full text-left flex items-center justify-between"
+          >
+            <span>Settings</span>
+            {showDropdownSettings ? (
+              <ChevronDown size={16} />
+            ) : (
+              <ChevronRight size={16} />
+            )}
+          </button>
+          {showDropdownSettings && (
+            <ul className="ml-4 mt-2 max-h-64 overflow-y-auto pr-2">
+              {[
+                { label: "Profile", path: "profile" },
+                {
+                  label: "Change Password",
+                  path: "change-password",
+                },
+              ].map((feature, idx) => (
+                <li key={idx} className="mb-2">
+                  <Link
+                    href={`/auth/${feature.path}`}
+                    className={`hover:text-gray-300 ${
+                      isActive(`/features/${feature.path}`)
+                        ? "text-green-400 font-bold"
+                        : ""
+                    }`}
+                  >
+                    {feature.label
+                      .replace(/-/g, " ")
+                      .replace(/\b\w/g, (c) => c.toUpperCase())}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
         <li className="mb-4">
           <button
             onClick={() => dispatch(setShowLogoutModal(true))}
-            className="hover:text-gray-400"
+            className="text-red-500 hover:text-red-600"
           >
             Logout
           </button>

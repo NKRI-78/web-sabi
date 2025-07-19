@@ -2,9 +2,10 @@
 
 import React from "react";
 import NotFound from "@/app/components/notfound/NotFound";
+import ContentKendaraan from "@/app/components/content/ContentKendaraan";
 
-const OnProgress: React.FC = () => {
-  return <NotFound />;
+const NomorRangka: React.FC = () => {
+  return <ContentKendaraan />;
 };
 
-export default OnProgress;
+export default NomorRangka;

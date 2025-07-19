@@ -7,9 +7,15 @@ import Cookies from "js-cookie";
 import { AppDispatch, RootState } from "@redux/store";
 import { useDispatch, useSelector } from "react-redux";
 
-import { loginAdminAsync, setEmail, setPassword, setShowPassword } from "@redux/slices/authSlice";
+import {
+  loginAdminAsync,
+  setEmail,
+  setPassword,
+  setShowPassword,
+} from "@redux/slices/authSlice";
 
-import { FaEye, FaEyeSlash } from "react-icons/fa"; 
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useEffect } from "react";
 
 const Login: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -17,16 +23,26 @@ const Login: React.FC = () => {
   const val = useSelector((state: RootState) => state.auth.value);
   const password = useSelector((state: RootState) => state.auth.password);
   const loading = useSelector((state: RootState) => state.auth.loading);
-  const showPassword = useSelector((state: RootState) => state.auth.showPassword);
-  
+  const showPassword = useSelector(
+    (state: RootState) => state.auth.showPassword
+  );
+
   const router = useRouter();
+
+  useEffect(() => {
+    dispatch(setEmail(""));
+    dispatch(setPassword(""));
+
+    return () => {
+      dispatch(setEmail(""));
+      dispatch(setPassword(""));
+    };
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const result = await dispatch(
-      loginAdminAsync({ val, password })
-    ).unwrap();
+    const result = await dispatch(loginAdminAsync({ val, password })).unwrap();
 
     Cookies.set("token", result.data.token, {
       expires: 365,
@@ -52,11 +68,16 @@ const Login: React.FC = () => {
   return (
     <div className="flex w-full items-center justify-center h-screen bg-gray-100">
       <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-lg">
-        <h2 className="text-2xl font-semibold text-center text-gray-800">Log In</h2>
+        <h2 className="text-2xl font-semibold text-center text-gray-800">
+          Log In
+        </h2>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="value" className="block text-sm font-medium text-gray-600">
+            <label
+              htmlFor="value"
+              className="block text-sm font-medium text-gray-600"
+            >
               Username
             </label>
             <input
@@ -70,7 +91,10 @@ const Login: React.FC = () => {
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-600">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-600"
+            >
               Password
             </label>
             <div className="relative">
@@ -87,7 +111,11 @@ const Login: React.FC = () => {
                 onClick={() => dispatch(setShowPassword(!showPassword))}
                 className="absolute right-3 top-0 transform translate-y-5 text-gray-500"
               >
-                {showPassword ? <FaEyeSlash className="h-5 w-5" /> : <FaEye className="h-5 w-5" />} 
+                {showPassword ? (
+                  <FaEyeSlash className="h-5 w-5" />
+                ) : (
+                  <FaEye className="h-5 w-5" />
+                )}
               </button>
             </div>
           </div>
@@ -96,10 +124,7 @@ const Login: React.FC = () => {
             type="submit"
             className="w-full py-2 mt-4 font-semibold text-white bg-blue rounded-md focus:outline-none focus:ring focus:ring-indigo-200"
           >
-            {loading 
-              ? "Please wait..." 
-              : "Log In"
-            }
+            {loading ? "Please wait..." : "Log In"}
           </button>
         </form>
       </div>
