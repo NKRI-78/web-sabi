@@ -285,7 +285,7 @@ const Content: React.FC = () => {
         )}
 
         {/* Alien TxtBase 2024 Section */}
-        {contents?.data.List?.["Alien TxtBase"].Data?.length != null && (
+        {contents?.data.List?.["Alien TxtBase"]?.Data?.length != null && (
           <div>
             <h2 className="text-xl font-semibold text-black mb-4">
               Alien TxtBase
@@ -304,7 +304,7 @@ const Content: React.FC = () => {
                 >
                   <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
                     <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
-                      Email / Nickaname :
+                      Email :
                     </strong>
                     <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
                       {item.Email ?? "N/A"}
@@ -1131,7 +1131,7 @@ const Content: React.FC = () => {
         {contents?.data.List?.IndonesiaCarOwner?.Data?.length != null && (
           <div>
             <h2 className="text-xl font-semibold text-black mb-4">
-              Indonesian Car Owner
+              Data Kendaraan
             </h2>
             <div
               className={
@@ -1239,6 +1239,7 @@ const Content: React.FC = () => {
           !contents?.data.List?.PeopleDataLabs?.Data?.length &&
           !contents?.data.List?.IndonesiaCarOwner?.Data?.length &&
           !contents?.data.List?.Dukcapil?.Data?.length &&
+          !contents?.data.List?.["Alien TxtBase"]?.Data?.length &&
           !contents?.data.List?.["naz.api"]?.Data?.length &&
           !contents?.data.List?.["RockYou 2024"].Data?.length &&
           !contents?.data.List?.["KomInfo Indonesia"]?.Data?.length &&
