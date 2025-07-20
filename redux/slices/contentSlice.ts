@@ -88,6 +88,9 @@ const contentSlice = createSlice({
     resetContents(state) {
       state.contents = null;
     },
+    resetContentKK(state) {
+      state.contentKK = [];
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -106,7 +109,7 @@ const contentSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchContentKKListAsync.fulfilled, (state, action) => {
-        console.log("content kk", action.payload)
+        console.log("content kk", action.payload);
         state.contentKK = action.payload;
         state.isLoading = false;
       })
@@ -130,5 +133,6 @@ export const {
   setContentHistories,
   setRedirect,
   resetContents,
+  resetContentKK,
 } = contentSlice.actions;
 export default contentSlice.reducer;
