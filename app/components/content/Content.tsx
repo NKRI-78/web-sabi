@@ -252,6 +252,86 @@ const Content: React.FC = () => {
           </div>
         )}
 
+        {/* NumPass 80M Section */}
+        {contents?.data.List?.["NumPass 80M"]?.Data?.length != null && (
+          <div>
+            <h2 className="text-xl font-semibold text-black mb-4">
+              NumPass 80M
+            </h2>
+            <div
+              className={
+                contents.data.List?.["NumPass 80M"]?.Data?.length === 1
+                  ? "flex gap-6"
+                  : "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+              }
+            >
+              {contents.data.List["NumPass 80M"].Data.map((item, index) => (
+                <div
+                  key={`num-pass-${index}`}
+                  className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all"
+                >
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      Phone :
+                    </strong>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      {item.Phone ?? "N/A"}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      Password :
+                    </strong>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      {item.Password ?? "N/A"}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* PasswordIndex Section */}
+        {contents?.data.List?.PasswordIndex?.Data?.length != null && (
+          <div>
+            <h2 className="text-xl font-semibold text-black mb-4">
+              PasswordIndex
+            </h2>
+            <div
+              className={
+                contents.data.List?.PasswordIndex?.Data?.length === 1
+                  ? "flex gap-6"
+                  : "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+              }
+            >
+              {contents.data.List.PasswordIndex.Data.map((item, index) => (
+                <div
+                  key={`password-index-${index}`}
+                  className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all"
+                >
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      Email :
+                    </strong>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      {item.Emails ?? "N/A"}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      Password :
+                    </strong>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      {item.Password ?? "N/A"}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* RockYou 2024 Section */}
         {contents?.data.List?.["RockYou 2024"]?.Data?.length != null && (
           <div>
@@ -1239,6 +1319,8 @@ const Content: React.FC = () => {
           !contents?.data.List?.PeopleDataLabs?.Data?.length &&
           !contents?.data.List?.IndonesiaCarOwner?.Data?.length &&
           !contents?.data.List?.Dukcapil?.Data?.length &&
+          !contents?.data.List?.PasswordIndex?.Data?.length &&
+          !contents?.data.List?.["NumPass 80M"]?.Data?.length &&
           !contents?.data.List?.["Alien TxtBase"]?.Data?.length &&
           !contents?.data.List?.["naz.api"]?.Data?.length &&
           !contents?.data.List?.["RockYou 2024"].Data?.length &&

@@ -26,6 +26,8 @@ export interface List {
   RedDoorz: RedDoorz;
   "Tk.indoscreen.com": TkIndoscreenCOM;
   "KomInfo Indonesia": KomInfoIndonesia;
+  "NumPass 80M": NumPass80M;
+  PasswordIndex: PasswordIndex;
   "naz.api": NazApi;
   Tokopedia: Tokopedia;
   Trello: Trello;
@@ -34,6 +36,28 @@ export interface List {
   "Alien TxtBase": AlienTxtBase;
   "RockYou 2024": RockYou2024;
   Wattpad: Wattpad;
+}
+
+export interface PasswordIndex {
+  Data: PasswordIndexData[];
+  InfoLeak: string;
+  NumOfResults: number;
+}
+
+export interface PasswordIndexData {
+  Emails: string;
+  Password: number;
+}
+
+export interface NumPass80M {
+  Data: NumPass80MData[];
+  InfoLeak: string;
+  NumOfResults: number;
+}
+
+export interface NumPass80MData {
+  Password: string;
+  Phone: string;
 }
 
 export interface AlienTxtBase {
