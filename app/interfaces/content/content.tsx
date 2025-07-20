@@ -26,17 +26,55 @@ export interface List {
   RedDoorz: RedDoorz;
   "Tk.indoscreen.com": TkIndoscreenCOM;
   "KomInfo Indonesia": KomInfoIndonesia;
+  "naz.api": NazApi;
   Tokopedia: Tokopedia;
   Trello: Trello;
   "Twitter 200M": Twitter200M;
   "Wahana Express": WahanaExpress;
+  "Alien TxtBase": AlienTxtBase;
+  "RockYou 2024": RockYou2024;
   Wattpad: Wattpad;
+}
+
+export interface AlienTxtBase {
+  Data: AlienTxtBaseData[];
+  InfoLeak: string;
+  NumOfResults: number;
+}
+
+export interface AlienTxtBaseData {
+  Email: string;
+  Nickname: string;
+  Password: string;
+  Url: string;
 }
 
 export interface KomInfoIndonesia {
   Data: KomInfoIndonesiaData[];
   InfoLeak: string;
   NumOfResults: number;
+}
+
+export interface RockYou2024 {
+  Data: RockYou2024Data[];
+  InfoLeak: string;
+  NumOfResults: number;
+}
+
+export interface RockYou2024Data {
+  Password: string;
+}
+
+export interface NazApi {
+  Data: NazApiData[];
+  InfoLeak: string;
+  NumOfResults: number;
+}
+
+export interface NazApiData {
+  NickName: string;
+  Password: string;
+  Url: string;
 }
 
 export interface KomInfoIndonesiaData {

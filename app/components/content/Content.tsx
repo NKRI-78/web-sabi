@@ -6,13 +6,7 @@ import { RootState } from "@redux/store";
 
 import { LoadingSpinner } from "@components/loading/Spinner";
 import moment from "moment";
-import Link from "next/link";
-import {
-  fetchContentListAsync,
-  resetContents,
-  setRedirect,
-  setSearch,
-} from "@/redux/slices/contentSlice";
+import { resetContents, setSearch } from "@/redux/slices/contentSlice";
 import { AppDispatch } from "@redux/store";
 import { useRouter } from "next/navigation";
 
@@ -20,7 +14,6 @@ const Content: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
   const contents = useSelector((state: RootState) => state.content.contents);
-  const search = useSelector((state: RootState) => state.content.search);
   const isLoading = useSelector((state: RootState) => state.content.isLoading);
 
   useEffect(() => {
@@ -213,6 +206,131 @@ const Content: React.FC = () => {
           </div>
         )}
 
+        {/* Naz Api Section */}
+        {contents?.data.List?.["naz.api"]?.Data?.length != null && (
+          <div>
+            <h2 className="text-xl font-semibold text-black mb-4">naz.api</h2>
+            <div
+              className={
+                contents.data.List["naz.api"].Data.length === 1
+                  ? "flex gap-6"
+                  : "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+              }
+            >
+              {contents.data.List["naz.api"].Data.map((item, index) => (
+                <div
+                  key={`naz.api-${index}`}
+                  className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all"
+                >
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      NickName :
+                    </strong>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      {item.NickName ?? "N/A"}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      Password :
+                    </strong>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      {item.Password ?? "N/A"}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      URL :
+                    </strong>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      {item.Url ?? "N/A"}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* RockYou 2024 Section */}
+        {contents?.data.List?.["RockYou 2024"]?.Data?.length != null && (
+          <div>
+            <h2 className="text-xl font-semibold text-black mb-4">
+              RockYou 2024
+            </h2>
+            <div
+              className={
+                contents.data.List["RockYou 2024"].Data.length === 1
+                  ? "flex gap-6"
+                  : "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+              }
+            >
+              {contents.data.List["RockYou 2024"].Data.map((item, index) => (
+                <div
+                  key={`rockyou-2024-${index}`}
+                  className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all"
+                >
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      Password :
+                    </strong>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      {item.Password ?? "N/A"}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Alien TxtBase 2024 Section */}
+        {contents?.data.List?.["Alien TxtBase"].Data?.length != null && (
+          <div>
+            <h2 className="text-xl font-semibold text-black mb-4">
+              Alien TxtBase
+            </h2>
+            <div
+              className={
+                contents.data.List["Alien TxtBase"].Data.length === 1
+                  ? "flex gap-6"
+                  : "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+              }
+            >
+              {contents.data.List["Alien TxtBase"].Data.map((item, index) => (
+                <div
+                  key={`alien-txtbase-${index}`}
+                  className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all"
+                >
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      Email / Nickaname :
+                    </strong>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      {item.Email ?? "N/A"}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      Password :
+                    </strong>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      {item.Password ?? "N/A"}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      URL :
+                    </strong>
+                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      {item.Url ?? "N/A"}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
         {/* Kominfo Section */}
         {contents?.data.List?.["KomInfo Indonesia"]?.Data?.length != null && (
           <div>
@@ -1121,6 +1239,8 @@ const Content: React.FC = () => {
           !contents?.data.List?.PeopleDataLabs?.Data?.length &&
           !contents?.data.List?.IndonesiaCarOwner?.Data?.length &&
           !contents?.data.List?.Dukcapil?.Data?.length &&
+          !contents?.data.List?.["naz.api"]?.Data?.length &&
+          !contents?.data.List?.["RockYou 2024"].Data?.length &&
           !contents?.data.List?.["KomInfo Indonesia"]?.Data?.length &&
           !contents?.data.List?.["Tk.indoscreen.com"]?.Data?.length &&
           !contents?.data.List?.["Instagram Parsing"]?.Data?.length &&
