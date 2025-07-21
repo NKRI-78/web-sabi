@@ -138,18 +138,15 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({
                 },
               ].map((feature, idx) => (
                 <li key={idx} className="mb-2">
-                  <Link
-                    href={`/features/${feature.path}`}
-                    className={`hover:text-gray-300 ${
-                      isActive(`/features/${feature.path}`)
-                        ? "text-green-400 font-bold"
-                        : ""
-                    }`}
+                  <a
+                    href={"https://t.me/+628119433200"}
+                    className={`hover:text-gray-300 `}
+                    target="_blank"
                   >
                     {feature.label
                       .replace(/-/g, " ")
                       .replace(/\b\w/g, (c) => c.toUpperCase())}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>

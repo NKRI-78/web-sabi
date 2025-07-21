@@ -1,10 +1,10 @@
 "use client";
 
+import ContentPhising from "@components/content/ContentPhising";
 import React from "react";
-import NotFound from "@/app/components/notfound/NotFound";
 
 const OnProgress: React.FC = () => {
-  return <NotFound />;
+  return <ContentPhising />;
 };
 
 export default OnProgress;

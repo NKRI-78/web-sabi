@@ -1,14 +1,42 @@
 "use client";
 
-import React from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "@redux/store";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@redux/store";
 
 import { LoadingSpinner } from "@components/loading/Spinner";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import {
+  fetchContentKKListAsync,
+  fetchContentListAsync,
+  resetContentKK,
+  resetContents,
+  setSearch,
+} from "@/redux/slices/contentSlice";
 
 const ContentKK: React.FC = () => {
   const router = useRouter();
+
+  const dispatch = useDispatch<AppDispatch>();
+  const searchParams = useSearchParams();
+  const searchValue = searchParams.get("search");
+
+  useEffect(() => {
+    const redirect = sessionStorage.getItem("isRedirect") === "true";
+
+    if (!redirect) {
+      dispatch(setSearch(""));
+      dispatch(resetContentKK());
+    }
+    sessionStorage.removeItem("isRedirect");
+  }, []);
+
+  useEffect(() => {
+    if (searchValue) {
+      dispatch(setSearch(searchValue));
+      dispatch(fetchContentKKListAsync(searchValue));
+    }
+  }, [searchValue]);
 
   const contentKK = useSelector((state: RootState) => state.content.contentKK);
   const isLoading = useSelector((state: RootState) => state.content.isLoading);
@@ -100,11 +128,22 @@ const ContentKK: React.FC = () => {
                       {item.kecamatan ?? "N/A"}
                     </span>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                  <div
+                    className="flex items-center gap-2 text-gray-600 text-sm mt-2"
+                    onClick={
+                      item.no_kk
+                        ? () => handleNavigate(item.no_kk!, "cek-kk")
+                        : () => {}
+                    }
+                  >
                     <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
                       No KK :
                     </strong>
-                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                    <span
+                      className={`${
+                        item.no_kk ? "text-blue-500 cursor-pointer" : ""
+                      } truncate overflow-hidden whitespace-nowrap max-w-full block`}
+                    >
                       {item.no_kk ?? "N/A"}
                     </span>
                   </div>

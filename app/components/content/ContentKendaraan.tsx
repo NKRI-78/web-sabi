@@ -52,7 +52,7 @@ const ContentKendaraan: React.FC = () => {
         {contents?.data.List?.IndonesiaCarOwner?.Data?.length != null && (
           <div>
             <h2 className="text-xl font-semibold text-black mb-4">
-              Indonesian Car Owner
+              Data Kendaraan
             </h2>
             <div
               className={
