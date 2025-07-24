@@ -42,6 +42,24 @@ export const fetchContentKKList = async (search: string) => {
   }
 };
 
+export const fetchContentCompanyList = async (search: string) => {
+  try {
+    const response = await axios.get(
+      `https://api-secret-kk.langitdigital78.com/perusahaan?search=${search}`
+    );
+    const data = response.data.data;
+    return data;
+  } catch (e: any) {
+    Swal.fire({
+      icon: "info",
+      title: "Info",
+      text: e?.response?.data?.message || e.message,
+      timer: 2000,
+      showConfirmButton: false,
+    });
+  }
+};
+
 export const fetchContentHistories = async () => {
   try {
     const token = Cookies.get("token");

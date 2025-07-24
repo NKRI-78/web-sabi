@@ -58,119 +58,120 @@ const ContentKK: React.FC = () => {
     <div className="bg-gray-100 p-4 py-10 w-full">
       <div className="max-w-7xl mx-auto space-y-10">
         {/* Kartu Keluarga */}
-        {contentKK.length != 0 && (
+        {contentKK && contentKK.length !== 0 && (
           <div>
             <h2 className="text-xl font-semibold text-black mb-4">
               Kartu Keluarga
             </h2>
             <div
               className={
-                contentKK.length === 1
+                contentKK && contentKK.length === 1
                   ? "flex gap-6"
                   : "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
               }
             >
-              {contentKK.map((item, index) => (
-                <div
-                  key={`indonesia-car-owner-${index}`}
-                  className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all"
-                >
-                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
-                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
-                      Nama :
-                    </strong>
-                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
-                      {item.nama ?? "N/A"}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
-                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
-                      Alamat :
-                    </strong>
-                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
-                      {item.alamat ?? "N/A"}
-                    </span>
-                  </div>
+              {contentKK &&
+                contentKK.map((item, index) => (
                   <div
-                    className="flex items-center gap-2 text-gray-600 text-sm mt-2"
-                    onClick={
-                      item.nik
-                        ? () => handleNavigate(item.nik!, "nik")
-                        : () => {}
-                    }
+                    key={`indonesia-car-owner-${index}`}
+                    className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all"
                   >
-                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
-                      NIK :
-                    </strong>
-                    <span
-                      className={`${
-                        item.nik ? "text-blue-500 cursor-pointer" : ""
-                      } truncate overflow-hidden whitespace-nowrap max-w-full block`}
+                    <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                      <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                        Nama :
+                      </strong>
+                      <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                        {item.nama ?? "N/A"}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                      <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                        Alamat :
+                      </strong>
+                      <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                        {item.alamat ?? "N/A"}
+                      </span>
+                    </div>
+                    <div
+                      className="flex items-center gap-2 text-gray-600 text-sm mt-2"
+                      onClick={
+                        item.nik
+                          ? () => handleNavigate(item.nik!, "nik")
+                          : () => {}
+                      }
                     >
-                      {item.nik ?? "N/A"}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
-                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
-                      Kota :
-                    </strong>
-                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
-                      {item.kota ?? "N/A"}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
-                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
-                      Kecamatan :
-                    </strong>
-                    <span
-                      className={`truncate overflow-hidden whitespace-nowrap max-w-full block`}
+                      <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                        NIK :
+                      </strong>
+                      <span
+                        className={`${
+                          item.nik ? "text-blue-500 cursor-pointer" : ""
+                        } truncate overflow-hidden whitespace-nowrap max-w-full block`}
+                      >
+                        {item.nik ?? "N/A"}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                      <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                        Kota :
+                      </strong>
+                      <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                        {item.kota ?? "N/A"}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                      <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                        Kecamatan :
+                      </strong>
+                      <span
+                        className={`truncate overflow-hidden whitespace-nowrap max-w-full block`}
+                      >
+                        {item.kecamatan ?? "N/A"}
+                      </span>
+                    </div>
+                    <div
+                      className="flex items-center gap-2 text-gray-600 text-sm mt-2"
+                      onClick={
+                        item.no_kk
+                          ? () => handleNavigate(item.no_kk!, "cek-kk")
+                          : () => {}
+                      }
                     >
-                      {item.kecamatan ?? "N/A"}
-                    </span>
+                      <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                        No KK :
+                      </strong>
+                      <span
+                        className={`${
+                          item.no_kk ? "text-blue-500 cursor-pointer" : ""
+                        } truncate overflow-hidden whitespace-nowrap max-w-full block`}
+                      >
+                        {item.no_kk ?? "N/A"}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                      <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                        Tanggal Lahir :
+                      </strong>
+                      <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                        {item.tgl_lahir ?? "N/A"}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
+                      <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                        Tempat Lahir :
+                      </strong>
+                      <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                        {item.tmpt_lahir ?? "N/A"}
+                      </span>
+                    </div>
                   </div>
-                  <div
-                    className="flex items-center gap-2 text-gray-600 text-sm mt-2"
-                    onClick={
-                      item.no_kk
-                        ? () => handleNavigate(item.no_kk!, "cek-kk")
-                        : () => {}
-                    }
-                  >
-                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
-                      No KK :
-                    </strong>
-                    <span
-                      className={`${
-                        item.no_kk ? "text-blue-500 cursor-pointer" : ""
-                      } truncate overflow-hidden whitespace-nowrap max-w-full block`}
-                    >
-                      {item.no_kk ?? "N/A"}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
-                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
-                      Tanggal Lahir :
-                    </strong>
-                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
-                      {item.tgl_lahir ?? "N/A"}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
-                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
-                      Tempat Lahir :
-                    </strong>
-                    <span className="truncate overflow-hidden whitespace-nowrap max-w-full block">
-                      {item.tmpt_lahir ?? "N/A"}
-                    </span>
-                  </div>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
         )}
 
         {/* Handle if both are empty */}
-        {!contentKK.length && (
+        {!contentKK && (
           <div className="text-center h-screen justify-center items-center flex text-gray-500 text-lg">
             No data available.
           </div>

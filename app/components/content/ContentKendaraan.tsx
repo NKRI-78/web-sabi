@@ -124,6 +124,23 @@ const ContentKendaraan: React.FC = () => {
                     // }
                   >
                     <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
+                      No Polisi :
+                    </strong>
+                    <span
+                      className={`truncate overflow-hidden whitespace-nowrap max-w-full block`}
+                    >
+                      {item.AutoNumber ?? "N/A"}
+                    </span>
+                  </div>
+                  <div
+                    className="flex items-center gap-2 text-gray-600 text-sm mt-2"
+                    // onClick={
+                    //   item.EngineNumber
+                    //     ? () => handleNavigate(item.EngineNumber, "vehicle")
+                    //     : () => {}
+                    // }
+                  >
+                    <strong className="truncate overflow-hidden whitespace-nowrap max-w-full block">
                       No Mesin :
                     </strong>
                     <span

@@ -6,9 +6,9 @@ import {
   setSearch,
   fetchContentListAsync,
   fetchContentKKListAsync,
+  fetchContentCompanyListAsync,
 } from "@/redux/slices/contentSlice";
 import { AppDispatch, RootState } from "@/redux/store";
-import { fetchContentKKList } from "@/app/lib/contentService";
 
 interface SearchBarProps {
   isSidebarOpen: boolean;
@@ -37,6 +37,9 @@ const SearchBar = ({ isSidebarOpen, setIsSidebarOpen }: SearchBarProps) => {
     case "/features/cek-kk":
       placeholder = "Ketik NIK / Nama / No KK";
       break;
+    case "/features/company-name":
+      placeholder = "Ketik Nama Perusahaan";
+      break;
     default:
       placeholder = "Type anything";
       break;
@@ -59,6 +62,9 @@ const SearchBar = ({ isSidebarOpen, setIsSidebarOpen }: SearchBarProps) => {
 
     if (pathname == "/features/cek-kk") {
       dispatch(fetchContentKKListAsync(search));
+    } else if (pathname == "/features/company-name") {
+      console.log("masuk");
+      dispatch(fetchContentCompanyListAsync(search));
     } else {
       dispatch(fetchContentListAsync(search));
     }

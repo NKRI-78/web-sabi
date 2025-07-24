@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
+  fetchContentCompanyList,
   fetchContentHistories,
   fetchContentKKList,
   fetchContentList,
@@ -7,6 +8,7 @@ import {
 import { Content } from "@interfaces/content/content";
 import { ContentHistoryDataItem } from "@interfaces/content/content-history";
 import { ContentKkData } from "@/app/interfaces/content/kk";
+import { ContentCompanyData } from "@/app/interfaces/content/company";
 
 export const fetchContentListAsync = createAsyncThunk(
   "content/list",
@@ -24,6 +26,14 @@ export const fetchContentKKListAsync = createAsyncThunk(
   }
 );
 
+export const fetchContentCompanyListAsync = createAsyncThunk(
+  "content/company/list",
+  async (search: string) => {
+    const response = await fetchContentCompanyList(search);
+    return response;
+  }
+);
+
 export const fetchContentHistoryAsync = createAsyncThunk(
   "content/histories",
   async () => {
@@ -36,6 +46,7 @@ interface ContentState {
   contents: Content | null;
   contentHistories: ContentHistoryDataItem[];
   contentKK: ContentKkData[];
+  contentCompany: ContentCompanyData[];
   placeholder: string;
   search: string;
   isLoading: boolean;
@@ -47,6 +58,7 @@ const initialState: ContentState = {
   contents: null,
   contentHistories: [],
   contentKK: [],
+  contentCompany: [],
   placeholder: "",
   search: "",
   isLoading: false,
@@ -63,6 +75,9 @@ const contentSlice = createSlice({
     },
     setContentsKK(state, action: PayloadAction<ContentKkData[]>) {
       state.contentKK = action.payload;
+    },
+    setContentsCompany(state, action: PayloadAction<ContentCompanyData[]>) {
+      state.contentCompany = action.payload;
     },
     setSearchPlacholder(state, action: PayloadAction<string>) {
       state.placeholder = action.payload;
@@ -91,6 +106,9 @@ const contentSlice = createSlice({
     resetContentKK(state) {
       state.contentKK = [];
     },
+    resetContentCompany(state) {
+      state.contentCompany = [];
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -109,7 +127,6 @@ const contentSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchContentKKListAsync.fulfilled, (state, action) => {
-        console.log("content kk", action.payload);
         state.contentKK = action.payload;
         state.isLoading = false;
       })
@@ -117,7 +134,17 @@ const contentSlice = createSlice({
         state.isLoading = false;
         state.error = action.error.message || "Failed to fetch content";
       })
-
+      .addCase(fetchContentCompanyListAsync.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchContentCompanyListAsync.fulfilled, (state, action) => {
+        state.contentCompany = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(fetchContentCompanyListAsync.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message || "Failed to fetch content";
+      })
       .addCase(fetchContentHistoryAsync.fulfilled, (state, action) => {
         state.contentHistories = action.payload;
       });
@@ -131,8 +158,10 @@ export const {
   setIsLoading,
   setError,
   setContentHistories,
+  setContentsCompany,
   setRedirect,
   resetContents,
   resetContentKK,
+  resetContentCompany,
 } = contentSlice.actions;
 export default contentSlice.reducer;

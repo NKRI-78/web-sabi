@@ -1,10 +1,19 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import NotFound from "@/app/components/notfound/NotFound";
+import ContentCompany from "@/app/components/content/ContentCompany";
 
-const OnProgress: React.FC = () => {
-  return <NotFound />;
+const CompanyName: React.FC = () => {
+  return (
+    <Suspense
+      fallback={
+        <div className="h-screen flex items-center justify-center">Loading</div>
+      }
+    >
+      <ContentCompany />
+    </Suspense>
+  );
 };
 
-export default OnProgress;
+export default CompanyName;
